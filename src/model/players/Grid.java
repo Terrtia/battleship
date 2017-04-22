@@ -2,10 +2,12 @@ package model.players;
 
 import java.util.ArrayList;
 
+import model.ships.Destroyer;
 import model.ships.Ship;
+import model.ships.modern.GuidedMissileDestroyer;
 
 public class Grid {
-	enum square {EMPTY, MISS, HIT}
+	public enum square {EMPTY, MISS, HIT}
 	
 	static int gridSize = 10;
 	
@@ -15,7 +17,15 @@ public class Grid {
 	
 	public Grid(){
 		friendlyGrid = new square[gridSize][gridSize];
+		for(int i=0; i < gridSize;i++){
+			for(int j = 0; j < gridSize;j++){
+				friendlyGrid[i][j] = square.EMPTY;
+			}
+		}
 		fleet = new ArrayList<Ship>();
+		GuidedMissileDestroyer gd = new GuidedMissileDestroyer();
+		addShip(gd);
+		gd.place(1, 5, false);
 	}
 	
 	public void addShip(Ship ship){
@@ -42,4 +52,17 @@ public class Grid {
 		}
 		return false;
 	}
+
+	public int getGridSize() {
+		return gridSize;
+	}
+	
+	public ArrayList<Ship> getFleet(){
+		return fleet;
+	}
+	
+	public square getSquare(int x,int y){
+		return friendlyGrid[x][y];
+	}
+
 }

@@ -1,5 +1,6 @@
 package model.game;
 
+import model.players.Grid;
 import model.players.IA;
 import model.players.Human;
 
@@ -23,5 +24,19 @@ public class ClassicGame extends GameMode {
 		if(!computer.asLost())
 			computer.playTurn();
 	}
+
+	public int getGridSize() {
+		return player.getGridSize();
+	}
+
+	public Grid getHumanGrid() {
+		return player.getGrid();
+	}
+
+	public Grid getIAGrid() {
+		return computer.getGrid();
+	}
+	
+	
 	
 }

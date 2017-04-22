@@ -6,6 +6,8 @@ public abstract class Ship {
 	
 	protected int topLeftX;
 	protected int topLeftY;
+	
+
 	protected boolean horizontal;
 	
 	public Ship(int size, int hitPoints){
@@ -25,12 +27,12 @@ public abstract class Ship {
 	
 	public boolean isHit(int x, int y){
 		if(horizontal){
-			if(y == topLeftY && x >= topLeftX && x <= (topLeftX-size)){
+			if(y == topLeftY && x >= topLeftX && x < (topLeftX+size)){
 				hitPoints--;
 				return true;
 			}
 		} else {
-			if(x == topLeftX && y >= topLeftY && y <= (topLeftY-size)){
+			if(x == topLeftX && y >= topLeftY && y < (topLeftY+size)){
 				hitPoints--;
 				return true;	
 			}
@@ -41,4 +43,17 @@ public abstract class Ship {
 	public int getSize(){
 		return size;
 	}
+	
+	public int getTopLeftX() {
+		return topLeftX;
+	}
+
+	public int getTopLeftY() {
+		return topLeftY;
+	}
+
+	public boolean isHorizontal() {
+		return horizontal;
+	}
 }
+
