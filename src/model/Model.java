@@ -59,12 +59,29 @@ public class Model extends Observable {
 		return grid.getSquare(x, y);
 	}
 
-	public void newGame() {
-		
-	}
-
-	public void createShip() {
-		
+	/**
+	 * 
+	 * @param boats
+	 * boats est un tableau de dimension [types de bateaux][4]
+	 * le premier champs =
+	 * 0 pour Carrier
+	 * 1 pour Cruiser 
+	 * 2 pour Destroyer
+	 * 3 pour Submarine
+	 * 4 pour TorpedoBoat
+	 * le deuxieme champs =
+	 * 0 pour la coordonnée en x 
+	 * 1 pour la coordonnée en y
+	 * 2 pour savoir si c'est horizontal ou vertical (0 horizontal 1 vertival)
+	 * 3 la taille du bateau
+	 * @param gameMode
+	 * 0 pour mode classique
+	 * 1 pour mode alternatif
+	 * @param epoque
+	 * 0 moderne
+	 * 1 epoque passe
+	 */
+	public void newGame(int[][] boats,int gameMode,int epoque) {
 		
 	}
 

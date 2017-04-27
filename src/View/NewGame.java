@@ -26,7 +26,7 @@ import model.Model;
 public class NewGame extends JDialog implements Observer {
 	private Model model;
 	private ButtonGroup bg,boatg;
-	private JComboBox horizontal;
+	private JComboBox horizontal,epoque,modeJeu;
 	private JRadioButton boat1,boat2,boat3,boat4,boat5;
 	private int[][] boats ;
 	private JPanel panel;
@@ -52,14 +52,10 @@ public class NewGame extends JDialog implements Observer {
 	    panMode.setBackground(Color.white);
 	    panMode.setBorder(BorderFactory.createTitledBorder("Mode de jeu"));
 	    panMode.setSize(new Dimension(1000,50));
-	    JRadioButton mode1 = new JRadioButton("Jeu Classique");
-	    mode1.setSelected(true);
-	    JRadioButton mode2 = new JRadioButton("Jeu Alternatif");
-	    bg = new ButtonGroup();
-	    bg.add(mode1);
-	    bg.add(mode2);
-	    panMode.add(mode1);
-	    panMode.add(mode2);
+	    modeJeu = new JComboBox();
+	    modeJeu.addItem("Classic");
+	    modeJeu.addItem("Alternatif");
+	    panMode.add(modeJeu);
 	    content.add(panMode);
 	    
 	    //l'epoque
@@ -67,7 +63,7 @@ public class NewGame extends JDialog implements Observer {
 	    panEpoque.setBackground(Color.white);
 	    panEpoque.setSize(new Dimension(1000, 50));
 	    panEpoque.setBorder(BorderFactory.createTitledBorder("Epoque"));
-	    JComboBox epoque = new JComboBox();
+	    epoque = new JComboBox();
 	    epoque.addItem("Modern");
 	    epoque.addItem("Past");
 	    JLabel epoqueLabel = new JLabel("Epoque : ");
@@ -121,7 +117,6 @@ public class NewGame extends JDialog implements Observer {
 	    okButton.addActionListener(new okBoutonListener());
 		content.add(panel);
 		content.add(okButton);
-	    model.createShip();
 	    this.add(content);
 	    this.setVisible(true);
 	}
@@ -221,7 +216,7 @@ public class NewGame extends JDialog implements Observer {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if(model.newGameValide(boats)){
-				System.out.println("ok");
+				model.newGame(boats,modeJeu.getSelectedIndex(),epoque.getSelectedIndex());
 			}else{
 				System.out.println("nope");
 			}
