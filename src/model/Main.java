@@ -1,6 +1,6 @@
 package model;
 
-public class main {
+public class Main {
 
 	/**
 	 * @param args

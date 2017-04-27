@@ -19,10 +19,12 @@ public class ClassicGame extends GameMode {
 	}
 	
 	public void run(){
-		if(!player.asLost())
-			player.playTurn();
-		if(!computer.asLost())
-			computer.playTurn();
+		while(!player.asLost() || !computer.asLost()){
+			if(!player.asLost())
+				player.playTurn();
+			if(!computer.asLost())
+				computer.playTurn();
+		}
 	}
 
 	public int getGridSize() {
