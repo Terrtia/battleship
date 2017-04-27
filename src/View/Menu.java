@@ -22,7 +22,9 @@ public class Menu extends JMenuBar {
 		this.model = m;
 		item1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				 NewGame ng = new NewGame(model);
 				
+				model.newGame();
 			}
 	    	  });
 		

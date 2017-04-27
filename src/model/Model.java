@@ -58,5 +58,46 @@ public class Model extends Observable {
 		Grid grid = getIAGrid();
 		return grid.getSquare(x, y);
 	}
+
+	public void newGame() {
+		
+	}
+
+	public void createShip() {
+		
+		
+	}
+
+	public boolean newGameValide(int[][] boats) {
+		for(int i =0; i < boats.length;i++){
+			if(boats[i][0] == -1){
+				System.out.println("Tous les navires ne sont pas placés");
+				return false;
+			}
+			for(int j = i+1; j <boats.length;j++){
+				//si le bateau est a l'horizontal
+				if(boats[i][2] == 0){
+					if(boats[j][2] == 0){
+						return !(boats[j][1] == boats[i][1] &&
+								((boats[j][0] >= boats[i][0] && boats[j][0] <= boats[i][0]+boats[i][3])||
+								(boats[j][0]+boats[j][3] >= boats[i][0] && boats[j][0]+boats[j][3] <= boats[i][0]+boats[i][3])));
+					}else{
+						return!( (boats[j][0] >= boats[i][0] && boats[j][0] <= boats[i][0]+boats[i][3])&&
+								(boats[i][1]>= boats[j][1] && boats[i][1] <= boats[j][1]+boats[j][3]));
+					}
+				}else{
+					if(boats[j][2] == 1){
+						return !(boats[j][0] == boats[i][0] &&
+								((boats[j][1] >= boats[i][1] && boats[j][1] <= boats[i][1]+boats[i][3])||
+								(boats[j][1]+boats[j][3] >= boats[i][1] && boats[j][1]+boats[j][3] <= boats[i][1]+boats[i][3])));
+					}else{
+						return!( (boats[j][1] >= boats[i][1] && boats[j][1] <= boats[i][1]+boats[i][3])&&
+								(boats[i][0]>= boats[j][0] && boats[i][0] <= boats[j][0]+boats[j][3]));
+					}
+				}
+			}
+		}	
+		return false;
+	}
 	
 }
