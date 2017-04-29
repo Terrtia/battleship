@@ -14,6 +14,12 @@ public class Main {
 		AttackView attackView = new AttackView(model);
 		model.addObserver(shipView);
 		model.addObserver(attackView);
+		/*System.out.println(model.toStringGameStatut());
+		System.out.println(model.getIAGrid().toStringFriendlyGrid());
+		System.out.println(model.getIAGrid().toStringFleet());
+		System.out.println("-");
+		System.out.println(model.getHumanGrid().toStringFriendlyGrid());
+		System.out.println(model.getHumanGrid().toStringFleet());
 	}
 
 }

@@ -73,9 +73,17 @@ public abstract class Ship {
 	public boolean isHorizontal() {
 		return horizontal;
 	}
-	
+
 	public boolean isPlaced() {
 		return topLeftX != -1;
 	}
+
+	@Override
+	public String toString() {
+		return "size=" + size + ", hitPoints=" + hitPoints
+				+ ", topLeftX=" + topLeftX + ", topLeftY=" + topLeftY
+				+ ", horizontal=" + horizontal + "|";
+	}
+
 }
 
