@@ -9,6 +9,7 @@ import javax.swing.JMenuItem;
 
 import model.Model;
 
+@SuppressWarnings("serial")
 public class Menu extends JMenuBar {
 	private JMenu menu1 = new JMenu("Fichier");
 	private JMenuItem item1 = new JMenuItem("Ouvrir");
@@ -27,10 +28,10 @@ public class Menu extends JMenuBar {
 
 			}
 	    	  });
-		
+		//sauvegarder
 		item2.addActionListener(new ActionListener(){
 	    	  public void actionPerformed(ActionEvent event){
-	    		
+	    		m.sauvegarder();
 	    	  }
 		});
 		

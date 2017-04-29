@@ -55,5 +55,13 @@ public abstract class Ship {
 	public boolean isHorizontal() {
 		return horizontal;
 	}
+
+	@Override
+	public String toString() {
+		return "size=" + size + ", hitPoints=" + hitPoints
+				+ ", topLeftX=" + topLeftX + ", topLeftY=" + topLeftY
+				+ ", horizontal=" + horizontal + "|";
+	}
+	
 }
 

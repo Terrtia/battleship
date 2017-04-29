@@ -6,6 +6,8 @@ import java.util.Observable;
 import View.AttackView;
 import View.ShipView;
 
+import model.doa.AbstractDoaFactory;
+import model.doa.DoaNormalGame;
 import model.game.ClassicGame;
 import model.game.GameMode;
 import model.players.Grid;
@@ -15,12 +17,48 @@ import model.ships.Ship;
 public class Model extends Observable {
 	GameMode game;
 	
+	public enum GameType{
+		CLASSIC,
+	}
+	
+	public enum GameStatut{
+		HUMAIN_TOUR,
+		IA_TOUR,
+		HUMAIN_VICTOIRE,
+		HUMAIN_DEFAITE,
+		EGALITE,
+	}
+	
+	private AbstractDoaFactory doaFactory;
+	
+	private GameStatut gameStatut;
+	private GameType gameType;
+	
 	public Model(){
+		this.gameType = GameType.CLASSIC;   // a deplacer
 		game = new ClassicGame();
+		
 		ShipView shipView = new ShipView(this);
 		AttackView attackView = new AttackView(this);
 		addObserver(shipView);
 		addObserver(attackView);
+		
+		this.setGameStatut(GameStatut.HUMAIN_TOUR);
+		
+		this.sauvegarder();
+	}
+	
+	public void sauvegarder() {
+		this.doaFactory = AbstractDoaFactory.getFactory( AbstractDoaFactory.TXT_DOA );
+		
+		switch(this.gameType){
+		case CLASSIC:
+			DoaNormalGame doa= doaFactory.getNormalGameTxtDoa();
+			doa.sauvegarder(this.gameType, this.gameStatut, this.getHumanGrid(), this.getIAGrid());
+			break;
+		default:
+			//erreur
+		}
 	}
 	
 	public Grid getHumanGrid(){
@@ -57,6 +95,20 @@ public class Model extends Observable {
 	public square getIASquare(int x,int y){
 		Grid grid = getIAGrid();
 		return grid.getSquare(x, y);
+	}
+
+	
+	public GameStatut getGameStatut() {
+		return gameStatut;
+	}
+
+	public void setGameStatut(GameStatut gameStatut) {
+		this.gameStatut = gameStatut;
+	}
+	
+
+	public String toStringGameStatut() {
+		return gameStatut.toString();
 	}
 
 	/**

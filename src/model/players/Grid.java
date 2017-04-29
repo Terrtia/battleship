@@ -1,8 +1,8 @@
 package model.players;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
-import model.ships.Destroyer;
 import model.ships.Ship;
 import model.ships.modern.GuidedMissileDestroyer;
 
@@ -64,5 +64,29 @@ public class Grid {
 	public square getSquare(int x,int y){
 		return friendlyGrid[x][y];
 	}
+
+	public String toStringFriendlyGrid() {
+		
+		StringBuilder res = new StringBuilder();
+		for(int i=0; i < gridSize;i++){		
+			for(int j = 0; j < gridSize;j++){
+				res.append(this.friendlyGrid[i][j] + "|");
+			}
+		}
+
+		return res.toString();
+	}
+
+	public String toStringFleet() {
+		
+		StringBuilder res = new StringBuilder();
+		for(Ship ship : this.fleet){
+			res.append(ship.toString());
+		}
+		
+		return res.toString();
+	}
+	
+	
 
 }
