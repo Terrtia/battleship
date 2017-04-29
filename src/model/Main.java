@@ -1,5 +1,8 @@
 package model;
 
+import View.AttackView;
+import View.ShipView;
+
 public class Main {
 
 	/**
@@ -7,6 +10,10 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Model model = new Model();
+		ShipView shipView = new ShipView(model);
+		AttackView attackView = new AttackView(model);
+		model.addObserver(shipView);
+		model.addObserver(attackView);
 	}
 
 }

@@ -1,20 +1,20 @@
 package model.players;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-import model.ships.Destroyer;
 import model.ships.Ship;
 import model.ships.modern.GuidedMissileDestroyer;
 
-public class Grid {
-	public enum square {EMPTY, MISS, HIT}
-	
+public class Grid extends Observable{
+	public enum square {EMPTY, OCCUPIED, MISS, HIT}
+
 	static int gridSize = 10;
-	
+
 	private square friendlyGrid[][];
-	
+
 	private ArrayList<Ship> fleet;
-	
+
 	public Grid(){
 		friendlyGrid = new square[gridSize][gridSize];
 		for(int i=0; i < gridSize;i++){
@@ -27,9 +27,25 @@ public class Grid {
 		addShip(gd);
 		gd.place(1, 5, false);
 	}
+
+	public boolean placeShip(Ship ship, int x, int y, boolean horizontal){
+		if(ship.isPlaced())
+			ship.remove();
+		
+		for(Ship s : fleet)
+			if(s.isPlaced() && s.collide(x,y, ship.getSize(),horizontal)) return false;
 	
-	public void addShip(Ship ship){
-		fleet.add(ship);
+		ship.place(x, y, horizontal);
+		notifyObservers();
+		return true;
+	}
+	
+	public boolean addShip(Ship ship){
+		return fleet.add(ship);
+	}
+
+	public void clear(){
+		fleet = new ArrayList<Ship>();
 	}
 	
 	public boolean isHit(int x, int y){
@@ -37,12 +53,20 @@ public class Grid {
 			for(Ship s : fleet){
 				if (s.isHit(x, y)){
 					friendlyGrid[x][y] = square.HIT;
+					notifyObservers();
 					return true;
 				}
 			}
 			friendlyGrid[x][y] = square.MISS;
 		}
+		notifyObservers();
 		return false;
+	}
+
+	public boolean allShipsPlaced() {
+		for(Ship s: fleet)
+			if(!s.isPlaced()) return false;
+		return true;
 	}
 
 	public boolean boatStillFloats() {
@@ -56,11 +80,11 @@ public class Grid {
 	public int getGridSize() {
 		return gridSize;
 	}
-	
+
 	public ArrayList<Ship> getFleet(){
 		return fleet;
 	}
-	
+
 	public square getSquare(int x,int y){
 		return friendlyGrid[x][y];
 	}

@@ -5,40 +5,27 @@ import model.players.IA;
 import model.players.Human;
 
 public class ClassicGame extends GameMode {
-	Human player;
-	IA computer;
 
 	public ClassicGame() {
-		player = new Human();
-		computer = new IA();
+		super();
 	}
 	
 	public void placeShips() {
-		player.placeShips();
+		createFleet(getHumanGrid());
+		createFleet(getIAGrid());
 		computer.placeShips();
 	}
 	
 	public void run(){
-		while(!player.asLost() || !computer.asLost()){
-			if(!player.asLost())
-				player.playTurn();
-			if(!computer.asLost())
-				computer.playTurn();
-		}
-	}
-
-	public int getGridSize() {
-		return player.getGridSize();
-	}
-
-	public Grid getHumanGrid() {
-		return player.getGrid();
-	}
-
-	public Grid getIAGrid() {
-		return computer.getGrid();
+		// TODO Auto-generated method stub
 	}
 	
-	
-	
+	public void createFleet(Grid g){
+		g.clear();
+		g.addShip(shipFactory.createCarrier());
+		g.addShip(shipFactory.createCruiser());
+		g.addShip(shipFactory.createDestroyer());
+		g.addShip(shipFactory.createSubmarine());
+		g.addShip(shipFactory.createTorpedoBoat());
+	}
 }

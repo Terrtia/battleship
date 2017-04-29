@@ -8,7 +8,6 @@ public class IA extends Player {
 		
 	}
 
-	@Override
 	public void placeShips() {
 		// TODO Auto-generated method stub
 		
