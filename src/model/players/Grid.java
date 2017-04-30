@@ -26,10 +26,18 @@ public class Grid extends Observable{
 		fleet = new ArrayList<Ship>();
 		GuidedMissileDestroyer gd = new GuidedMissileDestroyer();
 		addShip(gd);
-		gd.place(1, 5, false);
+		try {
+			gd.place(1, 5, false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	public boolean placeShip(Ship ship, int x, int y, boolean horizontal){
+	public boolean placeShip(Ship ship, int x, int y, boolean horizontal) throws Exception{
+		if(x<0 | y<0 | x>this.getGridSize() | y>this.getGridSize()){
+			throw new Exception("Out of Grid");
+		}
+		
 		if(ship.isPlaced())
 			ship.remove();
 		
@@ -89,6 +97,10 @@ public class Grid extends Observable{
 	
 	public Square getSquare(int x,int y){
 		return friendlyGrid[x][y];
+	}
+	
+	public Square[][] getFriendlyGrid() {
+		return friendlyGrid;
 	}
 
 	public void setFriendlyGrid(Square[][] friendlyGrid) {

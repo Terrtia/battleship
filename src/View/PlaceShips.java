@@ -130,7 +130,11 @@ public class PlaceShips extends JDialog implements Observer {
 		public void actionPerformed(ActionEvent arg0) {
 			int selected = getSelectedBoat();
 			Ship s = grid.getFleet().get(selected);
-			grid.placeShip(s, x, y, horizontal.getSelectedIndex() == 0);
+			try {
+				grid.placeShip(s, x, y, horizontal.getSelectedIndex() == 0);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			update(null, null);
 		}
 
