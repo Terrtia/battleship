@@ -1,7 +1,8 @@
 package model.players;
 
+
 import model.players.Grid.Square;
-import model.ships.Destroyer;
+
 
 public abstract class Player {
 	protected Grid grid;
@@ -27,5 +28,4 @@ public abstract class Player {
 	}
 	
 	public abstract void playTurn();
-	public abstract void placeShips();
 }

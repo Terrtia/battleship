@@ -17,7 +17,7 @@ public class Menu extends JMenuBar {
 	private JMenu menu2 = new JMenu("Partie");
 	private JMenuItem item3 = new JMenuItem("Nouvelle Partie");
 	private Model model;
-	
+
 	public Menu(final Model m){
 		super();
 		this.model = m;
@@ -29,28 +29,30 @@ public class Menu extends JMenuBar {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+
 			}
 	    	  });
+
 		//sauvegarder
 		item2.addActionListener(new ActionListener(){
 	    	  public void actionPerformed(ActionEvent event){
 	    		m.sauvegarder();
 	    	  }
 		});
-		
+
 		item3.addActionListener(new ActionListener(){
-	    	  public void actionPerformed(ActionEvent event){
-	    		NewGame ng = new NewGame(model);
-	    	  }
+			public void actionPerformed(ActionEvent event){
+				NewGame ng = new NewGame(model);
+			}
 		});
-		
+
 		this.menu1.add(item1);
 		this.menu1.addSeparator();
 		this.menu1.add(item2); 
 		this.menu1.addSeparator();
-	
+
 		this.menu2.add(item3);
-		
+
 		this.add(menu1);
 		this.add(menu2);
 	}
