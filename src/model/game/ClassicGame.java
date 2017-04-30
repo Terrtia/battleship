@@ -3,6 +3,7 @@ package model.game;
 import model.players.Grid;
 import model.players.IA;
 import model.players.Human;
+import model.players.Grid.Square;
 
 public class ClassicGame extends GameMode {
 	Human player;
@@ -37,6 +38,16 @@ public class ClassicGame extends GameMode {
 
 	public Grid getIAGrid() {
 		return computer.getGrid();
+	}
+
+	@Override
+	public void setHumanFriendlyGrid(Square[][] grid) {
+		this.player.setFriendlyGrid(grid);
+	}
+
+	@Override
+	public void setIAFriendlyGrid(Square[][] grid) {
+		this.computer.setFriendlyGrid(grid);
 	}
 	
 	

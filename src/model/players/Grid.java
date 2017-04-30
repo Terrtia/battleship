@@ -7,19 +7,19 @@ import model.ships.Ship;
 import model.ships.modern.GuidedMissileDestroyer;
 
 public class Grid {
-	public enum square {EMPTY, MISS, HIT}
+	public enum Square {EMPTY, MISS, HIT}
 	
 	static int gridSize = 10;
 	
-	private square friendlyGrid[][];
+	private Square friendlyGrid[][];
 	
 	private ArrayList<Ship> fleet;
 	
 	public Grid(){
-		friendlyGrid = new square[gridSize][gridSize];
+		friendlyGrid = new Square[gridSize][gridSize];
 		for(int i=0; i < gridSize;i++){
 			for(int j = 0; j < gridSize;j++){
-				friendlyGrid[i][j] = square.EMPTY;
+				friendlyGrid[i][j] = Square.EMPTY;
 			}
 		}
 		fleet = new ArrayList<Ship>();
@@ -33,14 +33,14 @@ public class Grid {
 	}
 	
 	public boolean isHit(int x, int y){
-		if(friendlyGrid[x][y] == square.EMPTY){
+		if(friendlyGrid[x][y] == Square.EMPTY){
 			for(Ship s : fleet){
 				if (s.isHit(x, y)){
-					friendlyGrid[x][y] = square.HIT;
+					friendlyGrid[x][y] = Square.HIT;
 					return true;
 				}
 			}
-			friendlyGrid[x][y] = square.MISS;
+			friendlyGrid[x][y] = Square.MISS;
 		}
 		return false;
 	}
@@ -61,8 +61,12 @@ public class Grid {
 		return fleet;
 	}
 	
-	public square getSquare(int x,int y){
+	public Square getSquare(int x,int y){
 		return friendlyGrid[x][y];
+	}
+
+	public void setFriendlyGrid(Square[][] friendlyGrid) {
+		this.friendlyGrid = friendlyGrid;
 	}
 
 	public String toStringFriendlyGrid() {
@@ -70,7 +74,7 @@ public class Grid {
 		StringBuilder res = new StringBuilder();
 		for(int i=0; i < gridSize;i++){		
 			for(int j = 0; j < gridSize;j++){
-				res.append(this.friendlyGrid[i][j] + "|");
+				res.append(this.friendlyGrid[i][j] + ";");
 			}
 		}
 

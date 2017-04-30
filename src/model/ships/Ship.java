@@ -58,9 +58,18 @@ public abstract class Ship {
 
 	@Override
 	public String toString() {
-		return "size=" + size + ", hitPoints=" + hitPoints
-				+ ", topLeftX=" + topLeftX + ", topLeftY=" + topLeftY
-				+ ", horizontal=" + horizontal + "|";
+		StringBuilder res = new StringBuilder();
+		res.append(size);
+		res.append(";");
+		res.append(hitPoints);
+		res.append(";");
+		res.append(topLeftX);
+		res.append(";");
+		res.append(topLeftY);
+		res.append(";");
+		res.append(horizontal);
+		res.append(System.lineSeparator());
+		return res.toString();
 	}
 	
 }

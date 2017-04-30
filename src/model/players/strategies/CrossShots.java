@@ -3,7 +3,7 @@ package model.players.strategies;
 import java.util.Random;
 
 import model.players.Grid;
-import model.players.Grid.square;
+import model.players.Grid.Square;
 
 public class CrossShots extends Strategy {
 	private Random rng;
@@ -18,7 +18,7 @@ public class CrossShots extends Strategy {
 		do{
 			x = rng.nextInt(g.getGridSize());
 			y = rng.nextInt(g.getGridSize()/2)*2+(x%2);
-		} while(g.getSquare(x, y) != square.EMPTY);
+		} while(g.getSquare(x, y) != Square.EMPTY);
 		int a[] = {x,y};
 		return a;
 	}

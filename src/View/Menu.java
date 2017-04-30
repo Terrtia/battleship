@@ -21,11 +21,14 @@ public class Menu extends JMenuBar {
 	public Menu(final Model m){
 		super();
 		this.model = m;
+		//charger
 		item1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
-				 
-				
-
+				try {
+					m.charger();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 	    	  });
 		//sauvegarder
