@@ -14,7 +14,6 @@ public class Main {
 		AttackView attackView = new AttackView(model);
 		model.addObserver(shipView);
 		model.addObserver(attackView);
-	
 	}
 
 }

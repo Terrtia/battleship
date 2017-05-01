@@ -2,10 +2,8 @@ package battleship.model.grid;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Arrays;
 
 import battleship.model.ships.Ship;
-import battleship.model.ships.modern.GuidedMissileDestroyer;
 import battleship.model.ships.modern.MissileCruiser;
 
 
@@ -28,21 +26,21 @@ public class Grid extends Observable{
 		fleet = new ArrayList<Ship>();
 		MissileCruiser gd = new MissileCruiser();
 		addShip(gd);
-		try {
-			gd.place(1, 1, false);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		gd.place(1, 1, false);
 	}
 
-	public boolean placeShip(Ship ship, int x, int y, boolean horizontal) throws Exception{
-		if(x<0 | y<0 | x>this.getGridSize() | y>this.getGridSize()){
-			throw new Exception("Out of Grid");
-		}
+	public boolean placeShip(Ship ship, int x, int y, boolean horizontal){
+		assert (x<0 | y<0 | x>this.getGridSize() | y>this.getGridSize()) : "Out of Grid";
 
 		if(ship.isPlaced())
 			ship.remove();
 
+		// Checks if the rear of the ship isn't outside the grid
+		if((horizontal && x+ship.getSize() >= getGridSize()) ||
+		   (!horizontal && y+ship.getSize() >= getGridSize()))
+			return false;
+			
+			
 		for(Ship s : fleet)
 			if(s.isPlaced() && s.collide(x,y, ship.getSize(),horizontal)) return false;
 
@@ -57,6 +55,7 @@ public class Grid extends Observable{
 
 	public void clear(){
 		fleet = new ArrayList<Ship>();
+		notifyObservers();
 	}
 
 	public boolean isHit(int x, int y){

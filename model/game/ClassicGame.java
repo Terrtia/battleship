@@ -10,7 +10,7 @@ public class ClassicGame extends GameMode {
 		this.setEpoch(Epoch.MODERN);
 	}
 	
-	public void placeShips() {
+	public void placeShips(){
 		createFleet(player);
 		createFleet(computer);
 		IA.placeShips(computer);

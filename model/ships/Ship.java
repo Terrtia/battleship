@@ -15,10 +15,8 @@ public abstract class Ship {
 		this.hitPoints = hitPoints;
 	}
 	
-	public void place(int x, int y, boolean horizontal) throws Exception{
-		if(x<0 | y<0){
-			throw new Exception("Error negative x or y");
-		}
+	public void place(int x, int y, boolean horizontal) {
+		assert (x<0 | y<0) : "Error negative x or y";
 		
 		this.topLeftX = x;
 		this.topLeftY = y;
@@ -30,10 +28,9 @@ public abstract class Ship {
 		topLeftY = -1;
 	}
 	
-	public boolean collide(int x, int y, int s, boolean h) throws Exception {
-		if(x<0 | y<0 | s<=0){
-			throw new Exception("Error negative x or y or size");
-		}
+	public boolean collide(int x, int y, int s, boolean h) {
+		assert (x<0 | y<0 | s<=0) : "Error negative x or y or size";
+		
 		int x1 = topLeftX, y1 = topLeftY, x2 = x, y2 = y;
 		
 		if(horizontal) x1 += size;
