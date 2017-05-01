@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import battleship.model.ships.Ship;
 import battleship.model.ships.modern.GuidedMissileDestroyer;
+import battleship.model.ships.modern.MissileCruiser;
 
 
 public class Grid extends Observable{
@@ -25,10 +26,10 @@ public class Grid extends Observable{
 			}
 		}
 		fleet = new ArrayList<Ship>();
-		GuidedMissileDestroyer gd = new GuidedMissileDestroyer();
+		MissileCruiser gd = new MissileCruiser();
 		addShip(gd);
 		try {
-			gd.place(1, 5, false);
+			gd.place(1, 1, false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,8 +63,8 @@ public class Grid extends Observable{
 		if(friendlyGrid[x][y] == Square.EMPTY){
 			for(Ship s : fleet){
 				if (s.isHit(x, y)){
-
 					friendlyGrid[x][y] = Square.HIT;
+					s.hit();
 					notifyObservers();
 					return true;
 				}

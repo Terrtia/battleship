@@ -1,12 +1,5 @@
 package battleship.test.player;
 
-import static org.junit.Assert.*;
-
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 import battleship.model.players.Grid;
 import battleship.model.players.Grid.Square;
 import battleship.model.ships.Ship;

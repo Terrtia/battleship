@@ -53,12 +53,10 @@ public abstract class Ship {
 	public boolean isHit(int x, int y){
 		if(horizontal){
 			if(y == topLeftY && x >= topLeftX && x < (topLeftX+size)){
-				hitPoints--;
 				return true;
 			}
 		} else {
 			if(x == topLeftX && y >= topLeftY && y < (topLeftY+size)){
-				hitPoints--;
 				return true;	
 			}
 		}
@@ -107,6 +105,11 @@ public abstract class Ship {
 		res.append(horizontal);
 		res.append(System.lineSeparator());
 		return res.toString();
+	}
+
+	public void hit() {
+		hitPoints--;
+		
 	}
 
 }

@@ -42,11 +42,6 @@ public class Model extends Observable {
 	public Model(){
 		this.gameType = GameType.CLASSIC;
 		game = new ClassicGame();
-
-		ShipView shipView = new ShipView(this);
-		AttackView attackView = new AttackView(this);
-		addObserver(shipView);
-		addObserver(attackView);
 		
 		this.setGameStatut(GameStatut.HUMAIN_TOUR);
 		
@@ -68,6 +63,38 @@ public class Model extends Observable {
 		grid.isHit(x,y);
 		setChanged();
 		notifyObservers();		
+	}
+	
+	public boolean isFront(int x, int y) {
+		Grid grid = getHumanGrid();
+		for(Ship s: grid.getFleet()){
+			if(x == s.getTopLeftX() && y == s.getTopLeftY())
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean isRear(int x, int y) {
+		Grid grid = getHumanGrid();
+		for(Ship s: grid.getFleet()){
+			if(s.isHorizontal()){
+				if((x == s.getTopLeftX()+s.getSize()-1) && (y == s.getTopLeftY()))
+					return true;
+			}else{
+				if((x == s.getTopLeftX()) && (y == s.getTopLeftY()+s.getSize()-1))
+					return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean isHorizontal(int x, int y) {
+		Grid grid = getHumanGrid();
+		for(Ship s: grid.getFleet()){
+			if(s.isHit(x,y) && s.isHorizontal())
+				return true;
+		}
+		return false;
 	}
 
 	public GameMode getGameMode() {
@@ -118,6 +145,10 @@ public class Model extends Observable {
 		
 	public ArrayList<Ship> getHumanFleet() {
 		Grid grid = getHumanGrid();
+		return grid.getFleet();
+	}
+	public ArrayList<Ship> getIAFleet() {
+		Grid grid = getIAGrid();
 		return grid.getFleet();
 	}
 	

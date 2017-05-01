@@ -76,7 +76,7 @@ public class PlaceShips extends JDialog implements Observer {
 		content.add(boatPanel);
 
 		panel = new JPanel();
-		panel.setSize(new Dimension(1000,550));
+		panel.setSize(new Dimension(1000,650));
 		panel.setLayout(new GridLayout(grid.getGridSize(),grid.getGridSize()));
 
 		JButton button;
