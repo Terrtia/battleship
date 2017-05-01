@@ -2,15 +2,26 @@ package battleship.model.game;
 
 import battleship.model.grid.Grid;
 
+/**
+ * Mode de jeu classique
+ *
+ */
+
 public class ClassicGame extends GameMode {
 
+	/**
+	 * Constructeur du mode de jeu
+	 */
 	public ClassicGame() {
 		super();
 		this.gameMode = Gamemode.CLASSIC;
 		this.setEpoch(Epoch.MODERN);
 	}
 	
-	public void placeShips(){
+	/**
+	 * Placement des bateaux
+	 */
+	public void placeShips() {
 		createFleet(player);
 		createFleet(computer);
 		IA.placeShips(computer);
@@ -20,7 +31,7 @@ public class ClassicGame extends GameMode {
 		computer.isHit(x, y);
 		IA.play(player);
 	}
-	
+
 	public void createFleet(Grid g){
 		g.clear();
 		g.addShip(shipFactory.createCarrier());

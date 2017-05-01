@@ -24,7 +24,10 @@ import battleship.model.game.GameMode;
 import battleship.model.grid.Grid;
 import battleship.model.ships.Ship;
 
-
+/**
+ * Deuxieme fenetre de creation de partie
+ *
+ */
 public class PlaceShips extends JDialog implements Observer {
 
 	private Grid grid;
@@ -35,6 +38,11 @@ public class PlaceShips extends JDialog implements Observer {
 	private JComboBox horizontal;
 	private JRadioButton boat1,boat2,boat3,boat4,boat5;
 
+	/**
+	 * Constructeur de la fenetre
+	 * @param gm
+	 * Le mode de jeu
+	 */
 	public PlaceShips(GameMode gm){
 		super();
 		gamemode = gm;
@@ -96,7 +104,9 @@ public class PlaceShips extends JDialog implements Observer {
 		this.setVisible(true);
 	}
 
-	@Override
+	/**
+	 * Mise a jour de la vue
+	 */
 	public void update(Observable arg0, Object arg1) {
 		for(int i = 0; i < grid.getGridSize() * grid.getGridSize();i++)
 			panel.getComponent(i).setEnabled(true);
@@ -112,6 +122,11 @@ public class PlaceShips extends JDialog implements Observer {
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 * Le bateau a placer
+	 */
 	public int getSelectedBoat(){
 		return (boat1.isSelected()) ? 0 : 
 			(boat2.isSelected()) ? 1 : 
@@ -120,6 +135,10 @@ public class PlaceShips extends JDialog implements Observer {
 						4;
 	}
 
+	/**
+	 * Le placement des bateaux
+	 *
+	 */
 	class BoutonListener implements ActionListener{
 		private int x;
 		private int y;
@@ -141,6 +160,10 @@ public class PlaceShips extends JDialog implements Observer {
 
 	}
 
+	/**
+	 * On envoite les données et les coordonées des bateaux
+	 *
+	 */
 	class okBoutonListener implements ActionListener{
 
 		@Override

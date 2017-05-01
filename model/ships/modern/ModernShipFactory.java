@@ -3,6 +3,10 @@ package battleship.model.ships.modern;
 import battleship.model.ships.Ship;
 import battleship.model.ships.ShipFactory;
 
+/**
+ * Factory de bateu modern
+ *
+ */
 public class ModernShipFactory extends ShipFactory {
 
 	@Override

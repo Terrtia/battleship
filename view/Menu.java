@@ -10,7 +10,11 @@ import javax.swing.JMenuItem;
 import battleship.model.Model;
 
 
-@SuppressWarnings("serial")
+/**
+ * 
+ * Classe représentant la barre de menu
+ *
+ */
 public class Menu extends JMenuBar {
 	private JMenu menu1 = new JMenu("Fichier");
 	private JMenuItem item1 = new JMenuItem("Ouvrir");
@@ -19,6 +23,11 @@ public class Menu extends JMenuBar {
 	private JMenuItem item3 = new JMenuItem("Nouvelle Partie");
 	private Model model;
 
+	/**
+	 * Constructeur du menu selon un model
+	 * @param m
+	 * le model
+	 */
 	public Menu(final Model m){
 		super();
 		this.model = m;
@@ -40,7 +49,7 @@ public class Menu extends JMenuBar {
 	    		m.sauvegarder();
 	    	  }
 		});
-
+		//nouvel partie
 		item3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				NewGame ng = new NewGame(model);

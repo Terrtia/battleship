@@ -8,7 +8,9 @@ public class RandomShots extends Strategy {
 	
 	public RandomShots() {super();}
 	
-	@Override
+	/**
+	 * tire au hasard
+	 */
 	public void play(Grid g) {
 		int x = -1, y = -1;
 		do{

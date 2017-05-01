@@ -2,30 +2,27 @@ package battleship.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
 import battleship.model.Model;
 import battleship.model.game.GameMode.Epoch;
 import battleship.model.game.GameMode.Gamemode;
-import battleship.view.AttackView.BoutonListener;
 
 
-
+/**
+ * Classe représentant la premiere fenetre de la creation de partie
+ *
+ */
 public class NewGame extends JDialog{
 	private Model model;
 	private Gamemode selectedGamemode;
@@ -38,6 +35,11 @@ public class NewGame extends JDialog{
 	 * 
 	 */
 	
+	/**
+	 * Constructeur de la premiere fenetre de creation de partie
+	 * @param m
+	 * Le model
+	 */
 	public NewGame(Model m){
 		super();
 		model = m;
@@ -84,6 +86,11 @@ public class NewGame extends JDialog{
 		this.setVisible(true);
 	}
 
+	/**
+	 * 
+	 * Action du bouton d'envoi
+	 *
+	 */
 	class okBoutonListener implements ActionListener{
 
 		@Override

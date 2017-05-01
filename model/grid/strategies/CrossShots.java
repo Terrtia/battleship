@@ -8,7 +8,9 @@ public class CrossShots extends Strategy {
 	
 	public CrossShots() {super();}
 	
-	@Override
+	/**
+	 * tire en forme de croix
+	 */
 	public void play(Grid g) {
 		int x = -1, y = -1;
 		do{

@@ -8,7 +8,10 @@ import battleship.model.grid.strategies.Strategy;
 import battleship.model.ships.ShipFactory;
 import battleship.model.ships.modern.ModernShipFactory;
 
-
+/**
+ * Classe abstraite representant tout les modes de jeu
+ *
+ */
 public abstract class GameMode {
 	public enum Epoch {MODERN}
 	public enum Gamemode {CLASSIC}
@@ -21,6 +24,9 @@ public abstract class GameMode {
 	Grid computer;
 	Strategy IA;
 
+	/**
+	 * Creation d'un mode de jeu
+	 */
 	public GameMode(){
 		player = new Grid();
 		computer = new Grid();
@@ -28,8 +34,17 @@ public abstract class GameMode {
 	}
 	
 	public abstract void placeShips();
+
+
+	
+
 	public abstract void playTurn(int x, int y);
 	
+	/**
+	 * Setter de l'epoque
+	 * @param e
+	 * L'epoque de jeu
+	 */
 	public void setEpoch(Epoch e) {
 		playedEpoch = e;
 		switch(playedEpoch){
