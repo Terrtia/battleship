@@ -21,23 +21,39 @@ import javax.swing.text.JTextComponent;
 import battleship.model.Model;
 import battleship.model.ships.Ship;
 
-
-public class AttackView extends JPanel implements Observer {
+/**
+ * 
+ * Classe représnetant la fenetre d'attaque
+ *
+ */
+public class AttackView extends JFrame implements Observer {
+	/**
+	 * le model observé
+	 */
 	private Model model;
+	/**
+	 * le panneau de tir
+	 */
 	private JPanel panel;
 	
 	
+	
+	/**
+	 * le Constructeur de la vue
+	 * @param m
+	 * le model observé
+	 */
 	public AttackView(Model m){
+		//creation de la fenetre
+		super("Attack");
 		model = m;
 		
-		//Creation de la fenetre
-		JFrame frame = new JFrame("Attack");
-		
-		frame.setSize(800,500);
+		this.setSize(800,500);
 		panel = new JPanel();
 
 		panel.setLayout(new GridLayout(model.getGridSize(),model.getGridSize()));
 		
+		//creation des boutons
 		JButton button;
 		for(int i = 0;i < model.getGridSize();i++){
 			for(int j = 0 ;j < model.getGridSize();j++){
@@ -51,14 +67,17 @@ public class AttackView extends JPanel implements Observer {
 		
 		
 		
-		frame.add(panel);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(panel);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 
-	@Override
+	/**
+	 * Mise à jour de la vue
+	 */
 	public void update(Observable arg0, Object arg1) {
+		//mise à jour des boutons
 		JButton button;
 		for(int i = 0; i < model.getGridSize();i++){
 			for(int j = 0; j < model.getGridSize();j++){
@@ -80,6 +99,7 @@ public class AttackView extends JPanel implements Observer {
 			}
 		}
 		
+		//affichage des bateaux morts
 		int index;
 		boolean horizontal;
 		for(Ship ship : model.getIAFleet()){
@@ -120,6 +140,11 @@ public class AttackView extends JPanel implements Observer {
 	}
 
 	
+	/**
+	 * 
+	 * controleur du bouton d'attaque
+	 *
+	 */
 	  class BoutonListener implements ActionListener{
 		  private int x;
 		  private int y;

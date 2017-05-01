@@ -22,7 +22,10 @@ import javax.swing.text.JTextComponent;
 import battleship.model.Model;
 import battleship.model.ships.Ship;
 
-
+/**
+ * Classe représentant nos bateaux et les tirs de l'ia
+ *
+ */
 public class ShipView extends JFrame implements Observer {
 
 	private Model model;
@@ -30,18 +33,25 @@ public class ShipView extends JFrame implements Observer {
 	private JPanel panel;
 	private Menu menu;
 	
+	/**
+	 * Creation de la fentre
+	 * @param m
+	 * Le model observé
+	 */
 	public ShipView(Model m){
+		//Creation de la fenetre
+		super("BattleShip");
 		model = m;
 		menu = new Menu(model);
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		
 		
-		//Creation de la fenetre
-		JFrame frame = new JFrame("BattleShip");
+
 		JLabel label;
+		this.setSize(800,500);
 		
-		frame.setSize(800,500);
+		//on cree le plateau
 		panelShip = new JPanel();
 		panelShip.setLayout(new GridLayout(model.getGridSize(),model.getGridSize()));
 		for(int i = 0;i < model.getGridSize();i++){
@@ -53,6 +63,7 @@ public class ShipView extends JFrame implements Observer {
 		}
 		 
 		int index;
+		//dessin des bateaux
 		for(Ship ship : model.getHumanFleet()){
 			label= new JLabel();
 			if(ship.isHorizontal()){
@@ -86,16 +97,19 @@ public class ShipView extends JFrame implements Observer {
 		
 		panel.add(panelShip,BorderLayout.CENTER);
 		panel.add(menu,BorderLayout.NORTH);
-		frame.add(panel);
-		frame.setVisible(true);
-		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(panel);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 	
-	@Override
+	/**
+	 * Mise à jours de la vue
+	 */
 	public void update(Observable arg0, Object arg1) {
 		JLabel label;
 		boolean horizontal;
+		//on explose les parties de bateaux détruites
 		for(int i = 0; i < model.getGridSize();i++){
 			for(int j = 0; j < model.getGridSize();j++){
 				label =  (JLabel) panelShip.getComponent(i*model.getGridSize()+j);
@@ -120,6 +134,8 @@ public class ShipView extends JFrame implements Observer {
 			}
 		}
 		int index;
+		
+		//si un bateau est détruit on l'affiche comme entierement brulé
 		for(Ship ship : model.getHumanFleet()){
 			if(!ship.isAlive()){
 				index = (ship.getTopLeftY()*model.getGridSize())+ship.getTopLeftX();

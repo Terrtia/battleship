@@ -5,7 +5,10 @@ import java.util.Random;
 import battleship.model.players.Grid;
 import battleship.model.players.Grid.Square;
 
-
+/**
+ * Strategie de tir en croix
+ *
+ */
 public class CrossShots extends Strategy {
 	private Random rng;
 	
@@ -13,7 +16,10 @@ public class CrossShots extends Strategy {
 		rng = new Random();
 	}
 	
-	@Override
+	/**
+	 * @return 
+	 * les coordonnees du tir
+	 */
 	public int[] getShot(Grid g) {
 		int x = -1, y = -1;
 		do{

@@ -8,8 +8,15 @@ import battleship.model.ships.Ship;
 import battleship.model.ships.modern.GuidedMissileDestroyer;
 import battleship.model.ships.modern.MissileCruiser;
 
-
+/**
+ * Classe représentant la grille
+ *
+ */
 public class Grid extends Observable{
+	/**
+	 * Les différents états d'une case de la grille
+	 *
+	 */
 	public enum Square {EMPTY, OCCUPIED, MISS, HIT}
 
 	static int gridSize = 10;
@@ -18,6 +25,9 @@ public class Grid extends Observable{
 
 	private ArrayList<Ship> fleet;
 
+	/**
+	 * Constructeur de la grille
+	 */
 	public Grid(){
 		friendlyGrid = new Square[gridSize][gridSize];
 		for(int i=0; i < gridSize;i++){
@@ -35,6 +45,19 @@ public class Grid extends Observable{
 		}
 	}
 
+	/**
+	 * Placement d'un bateau
+	 * @param ship
+	 * le bateau
+	 * @param x
+	 * coordonnée en x du point en haut a gauche
+	 * @param y
+	 * coordonée en y du point en haut a gauche
+	 * @param horizontal
+	 * boolean disant si le bateau est horizontal
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean placeShip(Ship ship, int x, int y, boolean horizontal) throws Exception{
 		if(x<0 | y<0 | x>this.getGridSize() | y>this.getGridSize()){
 			throw new Exception("Out of Grid");
@@ -59,6 +82,15 @@ public class Grid extends Observable{
 		fleet = new ArrayList<Ship>();
 	}
 	
+	/**
+	 * Fonction qui tire sur un bateau de la grille
+	 * @param x
+	 * coordonnée du tir en x
+	 * @param y
+	 * coordonnée du tir en y
+	 * @return
+	 * si un bateau est touche
+	 */
 	public boolean isHit(int x, int y){
 		if(friendlyGrid[x][y] == Square.EMPTY){
 			for(Ship s : fleet){
@@ -75,12 +107,22 @@ public class Grid extends Observable{
 		return false;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * true si tous les bateaux sont placés
+	 */
 	public boolean allShipsPlaced() {
 		for(Ship s: fleet)
 			if(!s.isPlaced()) return false;
 		return true;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * true si il reste des bateaux en vie
+	 */
 	public boolean boatStillFloats() {
 		for (Ship s : fleet){
 			if(s.isAlive())

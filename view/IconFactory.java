@@ -3,10 +3,19 @@ package battleship.view;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+/**
+ * Classe stockant les images
+ *
+ */
 public class IconFactory {
 
 	 private static IconFactory instance = new IconFactory();
 	 
+	 /**
+	  * 
+	  * @return
+	  * L'instance de la factory
+	  */
 	 public static IconFactory getInstance(){
 		 return instance;
 	 }
@@ -31,18 +40,40 @@ public class IconFactory {
 	 private Icon boatHExplosion = new ImageIcon("src/boatExplosionH1.png");
 	 private Icon frontBoatHExplosion = new ImageIcon("src/boatExplosionH3.png");
 	 
+	 /**
+	  * 
+	  * @return
+	  * l'image d'une explosion
+	  */
 	 public Icon getExplosion(){
 		 return explosion;
 	 }
 	 
+	 /**
+	  * 
+	  * @return
+	  * l'image d'un tir manqué
+	  */
 	 public Icon getWaterExplosion(){
 		 return waterExplosion;
 	 }
 	 
+	 /**
+	  * 
+	  * @return
+	  * l'image de l'eau
+	  */
 	 public Icon getWater(){
 		 return water;
 	 }
 	 
+	 /**
+	  * 
+	  * @param horizontal
+	  * boolean verifiant si le bateau est horizontal ou vertical
+	  * @return
+	  * l'avant du bateau
+	  */
 	 public Icon getFrontBoat(boolean horizontal){
 		 if(horizontal){
 			 return frontBoatH;
@@ -51,6 +82,13 @@ public class IconFactory {
 		 }
 	 }
 	 
+	 /**
+	  * 
+	  * @param horizontal
+	  * boolean verifiant si le bateau est horizontal ou vertical
+	  * @return
+	  * l'arriere du bateau
+	  */
 	 public Icon getRearBoat(boolean horizontal){
 		 if(horizontal){
 			 return rearBoatH;
@@ -59,6 +97,13 @@ public class IconFactory {
 		 }
 	 }
 	 
+	 /**
+	  * 
+	  * @param horizontal
+	  *  boolean verifiant si le bateau est horizontal ou vertical
+	  * @return
+	  * le corp du bateau
+	  */
 	 public Icon getBoat(boolean horizontal){
 		 if(horizontal){
 			 return boatH;
@@ -67,6 +112,13 @@ public class IconFactory {
 		 }
 	 }
 	 
+	 /**
+	  * 
+	  * @param horizontal
+	  *  boolean verifiant si le bateau est horizontal ou vertical
+	  * @return
+	  * l'image de l'avant du bateau en feu
+	  */
 	 public Icon getExplosiveFrontBoat(boolean horizontal){
 		 if(horizontal){
 			 return frontBoatHExplosion;
@@ -75,6 +127,13 @@ public class IconFactory {
 		 }
 	 }
 	 
+	 /**
+	  * 
+	  * @param horizontal
+	  *  boolean verifiant si le bateau est horizontal ou vertical
+	  * @return
+	  * l'image de l'arriere du bateau en feu
+	  */
 	 public Icon getExplosiveRearBoat(boolean horizontal){
 		 if(horizontal){
 			 return rearBoatHExplosion;
@@ -83,6 +142,13 @@ public class IconFactory {
 		 }
 	 }
 	 
+	 /**
+	  * 
+	  * @param horizontal
+	  *  boolean verifiant si le bateau est horizontal ou vertical
+	  * @return
+	  * le corp du bateau en feu
+	  */
 	 public Icon getExplosiveBoat(boolean horizontal){
 		 if(horizontal){
 			 return boatHExplosion;
