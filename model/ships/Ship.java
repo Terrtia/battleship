@@ -31,8 +31,8 @@ public abstract class Ship {
 	}
 	
 	public boolean collide(int x, int y, int s, boolean h) throws Exception {
-		if(x<0 | y<0){
-			throw new Exception("Error negative x or y");
+		if(x<0 | y<0 | s<=0){
+			throw new Exception("Error negative x or y or size");
 		}
 		int x1 = topLeftX, y1 = topLeftY, x2 = x, y2 = y;
 		

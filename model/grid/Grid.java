@@ -1,4 +1,4 @@
-package battleship.model.players;
+package battleship.model.grid;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -10,7 +10,7 @@ import battleship.model.ships.modern.MissileCruiser;
 
 
 public class Grid extends Observable{
-	public enum Square {EMPTY, OCCUPIED, MISS, HIT}
+	public enum Square {EMPTY, MISS, HIT}
 
 	static int gridSize = 10;
 

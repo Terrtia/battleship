@@ -5,7 +5,7 @@ import battleship.model.Model;
 import battleship.model.Model.GameStatut;
 import battleship.model.game.GameMode.Epoch;
 import battleship.model.game.GameMode.Gamemode;
-import battleship.model.players.Grid;
+import battleship.model.grid.Grid;
 
 public interface DoaNormalGame {
 

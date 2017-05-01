@@ -1,9 +1,9 @@
-package battleship.model.players.strategies;
+package battleship.model.grid.strategies;
 
 import java.util.Random;
 
-import battleship.model.players.Grid;
-import battleship.model.players.Grid.Square;
+import battleship.model.grid.Grid;
+import battleship.model.grid.Grid.Square;
 
 
 public class CrossShots extends Strategy {

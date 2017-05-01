@@ -1,7 +1,7 @@
 package battleship.test.player;
 
-import battleship.model.players.Grid;
-import battleship.model.players.Grid.Square;
+import battleship.model.grid.Grid;
+import battleship.model.grid.Grid.Square;
 import battleship.model.ships.Ship;
 import battleship.model.ships.modern.GuidedMissileDestroyer;
 
