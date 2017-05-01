@@ -9,8 +9,8 @@ import battleship.model.doa.AbstractDoaFactory;
 import battleship.model.doa.DoaNormalGame;
 import battleship.model.game.ClassicGame;
 import battleship.model.game.GameMode;
-import battleship.model.game.GameMode.epoch;
-import battleship.model.game.GameMode.gamemode;
+import battleship.model.game.GameMode.Epoch;
+import battleship.model.game.GameMode.Gamemode;
 import battleship.model.players.Grid;
 import battleship.model.players.Grid.Square;
 import battleship.model.ships.Ship;
@@ -21,10 +21,6 @@ import battleship.view.ShipView;
 
 public class Model extends Observable {
 	GameMode game;
-	
-	public enum GameType{
-		CLASSIC,
-	}
 	
 	public enum GameStatut{
 		HUMAIN_TOUR,
@@ -37,10 +33,8 @@ public class Model extends Observable {
 	private AbstractDoaFactory doaFactory;
 	
 	private GameStatut gameStatut;
-	private GameType gameType;
 	
 	public Model(){
-		this.gameType = GameType.CLASSIC;
 		game = new ClassicGame();
 
 		ShipView shipView = new ShipView(this);
@@ -53,7 +47,7 @@ public class Model extends Observable {
 		this.sauvegarder();
 	}
 	
-	public void newGame(gamemode gm, epoch e) {
+	public void newGame(Gamemode gm, Epoch e) {
 		switch(gm){
 		case CLASSIC:
 			game = new ClassicGame();
@@ -75,12 +69,16 @@ public class Model extends Observable {
 	}	
 	
 	public void sauvegarder() {
+		// choisir le format de stockage ici
 		this.doaFactory = AbstractDoaFactory.getFactory( AbstractDoaFactory.TXT_DOA );
+		Gamemode gameMode = this.game.getGameMode();
 		
-		switch(this.gameType){
+		switch(gameMode){
 		case CLASSIC:
 			DoaNormalGame doa= doaFactory.getNormalGameTxtDoa();
-			doa.sauvegarder(this.gameType, this.gameStatut, this.getHumanGrid(), this.getIAGrid());
+			Epoch epoch = game.getEpoch();
+			this.game.getEpoch();
+			doa.sauvegarder(gameMode, this.gameStatut, this.getHumanGrid(), this.getIAGrid(), epoch);
 			break;
 		default:
 			//erreur
@@ -88,12 +86,13 @@ public class Model extends Observable {
 	}
 	
 	public void charger() throws Exception {
+		//format du fichier
 		this.doaFactory = AbstractDoaFactory.getFactory( AbstractDoaFactory.TXT_DOA );
 		
 		BufferedReader inFile = new BufferedReader(new FileReader("save.txt"));	
 		String mode = inFile.readLine();
 		inFile.close();
-		if(mode.equals(GameType.CLASSIC.toString()) ){
+		if(mode.equals(Gamemode.CLASSIC.toString()) ){
 			DoaNormalGame doa= doaFactory.getNormalGameTxtDoa();
 			doa.charger(this);
 		} else {
@@ -140,12 +139,12 @@ public class Model extends Observable {
 		return grid.getSquare(x, y);
 	}
 	
-	public GameType getGameType() {
-		return gameType;
+	public Gamemode getGamemode() {
+		return this.game.getGameMode();
 	}
 
-	public void setGameType(GameType gameType) {
-		this.gameType = gameType;
+	public void setGamemode(Gamemode gameMode) {
+		this.game.setGamemode(gameMode);
 	}
 
 	public GameStatut getGameStatut() {

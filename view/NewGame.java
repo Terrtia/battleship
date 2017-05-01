@@ -20,16 +20,16 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import battleship.model.Model;
-import battleship.model.game.GameMode.epoch;
-import battleship.model.game.GameMode.gamemode;
+import battleship.model.game.GameMode.Epoch;
+import battleship.model.game.GameMode.Gamemode;
 import battleship.view.AttackView.BoutonListener;
 
 
 
 public class NewGame extends JDialog{
 	private Model model;
-	private gamemode selectedGamemode;
-	private epoch selectedEpoch;
+	private Gamemode selectedGamemode;
+	private Epoch selectedEpoch;
 
 	private JComboBox epoque,modeJeu;
 	private JPanel panel;
@@ -41,8 +41,8 @@ public class NewGame extends JDialog{
 	public NewGame(Model m){
 		super();
 		model = m;
-		selectedGamemode = gamemode.CLASSIC;
-		selectedEpoch = epoch.MODERN;
+		selectedGamemode = Gamemode.CLASSIC;
+		selectedEpoch = Epoch.MODERN;
 
 		JPanel content = new JPanel();
 		content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
