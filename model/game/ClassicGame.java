@@ -1,13 +1,12 @@
 package battleship.model.game;
 
-import battleship.model.players.Grid;
-import battleship.model.players.Human;
-import battleship.model.players.IA;
-import battleship.model.players.Grid.Square;
+import battleship.model.grid.Grid;
+
 /**
  * Mode de jeu classique
  *
  */
+
 public class ClassicGame extends GameMode {
 
 	/**
@@ -23,52 +22,16 @@ public class ClassicGame extends GameMode {
 	 * Placement des bateaux
 	 */
 	public void placeShips() {
-		createFleet(getHumanGrid());
-		createFleet(getIAGrid());
-		computer.placeShips();
+		createFleet(player);
+		createFleet(computer);
+		IA.placeShips(computer);
 	}
 	
-	public void run(){
-		// TODO Auto-generated method stub
+	public void playTurn(int x, int y){
+		computer.isHit(x, y);
+		IA.play(player);
 	}
 
-	/**
-	 * @return
-	 * La taille de la grille
-	 * 
-	 */
-	public int getGridSize() {
-		return player.getGridSize();
-	}
-
-	/**
-	 * retourne la grille du joueur
-	 */
-	public Grid getHumanGrid() {
-		return player.getGrid();
-	}
-
-	/**
-	 * retourne la grille de l'ia
-	 */
-	public Grid getIAGrid() {
-		return computer.getGrid();
-	}
-
-	public void setHumanFriendlyGrid(Square[][] grid) {
-		this.player.setFriendlyGrid(grid);
-	}
-
-	@Override
-	public void setIAFriendlyGrid(Square[][] grid) {
-		this.computer.setFriendlyGrid(grid);
-	}
-	
-	/**
-	 * Creation de la flotte de jeu
-	 * @param g
-	 * La grille de jeu
-	 */
 	public void createFleet(Grid g){
 		g.clear();
 		g.addShip(shipFactory.createCarrier());

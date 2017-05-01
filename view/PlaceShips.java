@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 
 import battleship.model.Model;
 import battleship.model.game.GameMode;
-import battleship.model.players.Grid;
+import battleship.model.grid.Grid;
 import battleship.model.ships.Ship;
 
 /**
@@ -169,7 +169,6 @@ public class PlaceShips extends JDialog implements Observer {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if(grid.allShipsPlaced()){
-				gamemode.run();
 				dispose();
 			}else{
 				System.out.println("nope");

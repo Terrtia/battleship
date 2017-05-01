@@ -1,9 +1,10 @@
 package battleship.model.game;
 
-import battleship.model.players.Grid;
-import battleship.model.players.Human;
-import battleship.model.players.IA;
-import battleship.model.players.Grid.Square;
+import battleship.model.grid.Grid;
+import battleship.model.grid.Grid.Square;
+import battleship.model.grid.strategies.CrossShots;
+import battleship.model.grid.strategies.RandomShots;
+import battleship.model.grid.strategies.Strategy;
 import battleship.model.ships.ShipFactory;
 import battleship.model.ships.modern.ModernShipFactory;
 
@@ -19,21 +20,26 @@ public abstract class GameMode {
 	protected Gamemode gameMode;
 	protected ShipFactory shipFactory;
 	
-	Human player;
-	IA computer;
+	Grid player;
+	Grid computer;
+	Strategy IA;
 
 	/**
 	 * Creation d'un mode de jeu
 	 */
 	public GameMode(){
-		player = new Human();
-		computer = new IA();
+		player = new Grid();
+		computer = new Grid();
+		IA = new RandomShots();
 	}
-	
-	public abstract void run();
 	
 	public abstract void placeShips();
 
+
+	
+
+	public abstract void playTurn(int x, int y);
+	
 	/**
 	 * Setter de l'epoque
 	 * @param e
@@ -47,37 +53,17 @@ public abstract class GameMode {
 			break;
 		}
 	}
+
+	public void setGamemode(Gamemode gameMode) {this.gameMode = gameMode;}
+	public void setHumanFriendlyGrid(Square[][] grid) {player.setFriendlyGrid(grid);}
+	public void setIAFriendlyGrid(Square[][] grid) {computer.setFriendlyGrid(grid);}
+	public void setRandomIA() {IA = new RandomShots();}
+	public void setSmartIA() {IA = new CrossShots();}
 	
-	public ShipFactory getShipFactory(){
-		return shipFactory;
-	}
-	
-	
-	public abstract void setHumanFriendlyGrid(Square[][] grid);
-	
-	public abstract void setIAFriendlyGrid(Square[][] grid);
-
-	public Epoch getEpoch(){
-		return playedEpoch;
-	}
-
-	public Gamemode getGameMode() {
-		return gameMode;
-	}
-
-	public void setGamemode(Gamemode gameMode) {
-		this.gameMode = gameMode;
-	}
-
-	public int getGridSize() {
-		return player.getGridSize();
-	}
-
-	public Grid getHumanGrid() {
-		return player.getGrid();
-	}
-
-	public Grid getIAGrid() {
-		return computer.getGrid();
-	}
+	public Epoch getEpoch() {return playedEpoch;}
+	public Gamemode getGameMode() {return gameMode;}
+	public int getGridSize() {return player.getGridSize();}
+	public Grid getHumanGrid() {return player;}
+	public Grid getIAGrid() {return computer;}
+	public ShipFactory getShipFactory() {return shipFactory;}
 }

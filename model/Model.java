@@ -11,8 +11,8 @@ import battleship.model.game.ClassicGame;
 import battleship.model.game.GameMode;
 import battleship.model.game.GameMode.Epoch;
 import battleship.model.game.GameMode.Gamemode;
-import battleship.model.players.Grid;
-import battleship.model.players.Grid.Square;
+import battleship.model.grid.Grid;
+import battleship.model.grid.Grid.Square;
 import battleship.model.ships.Ship;
 import battleship.view.AttackView;
 import battleship.view.ShipView;
@@ -53,8 +53,7 @@ public class Model extends Observable {
 	}
 	
 	public void shoot(int x, int y) {
-		Grid grid = getIAGrid();
-		grid.isHit(x,y);
+		game.playTurn(x, y);
 		setChanged();
 		notifyObservers();		
 	}

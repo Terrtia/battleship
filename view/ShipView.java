@@ -115,7 +115,7 @@ public class ShipView extends JFrame implements Observer {
 				label =  (JLabel) panelShip.getComponent(i*model.getGridSize()+j);
 				switch(model.getHumanSquare(j,i)){
 					case MISS :
-						label.setIcon(IconFactory.getInstance().getWater());
+						label.setIcon(IconFactory.getInstance().getWaterExplosion());
 						break;
 					case HIT :
 						horizontal = model.isHorizontal(j, i);

@@ -155,7 +155,7 @@ public class AttackView extends JFrame implements Observer {
 		  
 		    //Redéfinition de la méthode actionPerformed()
 		    public void actionPerformed(ActionEvent arg0) {
-		    	model.shoot(x,y);
+		    	model.shoot(x, y);
 		    }
 	  }
 }
