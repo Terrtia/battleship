@@ -9,10 +9,11 @@ import battleship.model.ships.modern.ModernShipFactory;
 
 
 public abstract class GameMode {
-	public enum epoch {MODERN}
-	public enum gamemode {CLASSIC}
+	public enum Epoch {MODERN}
+	public enum Gamemode {CLASSIC}
 
-	protected epoch playedEpoch; 
+	protected Epoch playedEpoch; 
+	protected Gamemode gameMode;
 	protected ShipFactory shipFactory;
 	
 	Human player;
@@ -27,7 +28,7 @@ public abstract class GameMode {
 	
 	public abstract void placeShips();
 
-	public void setEpoch(epoch e) {
+	public void setEpoch(Epoch e) {
 		playedEpoch = e;
 		switch(playedEpoch){
 		case MODERN:
@@ -45,8 +46,16 @@ public abstract class GameMode {
 	
 	public abstract void setIAFriendlyGrid(Square[][] grid);
 
-	public epoch getEpoch(){
+	public Epoch getEpoch(){
 		return playedEpoch;
+	}
+
+	public Gamemode getGameMode() {
+		return gameMode;
+	}
+
+	public void setGamemode(Gamemode gameMode) {
+		this.gameMode = gameMode;
 	}
 
 	public int getGridSize() {

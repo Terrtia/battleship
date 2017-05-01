@@ -3,13 +3,13 @@ package battleship.model.doa;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
 import battleship.model.Model;
 import battleship.model.Model.GameStatut;
-import battleship.model.Model.GameType;
+import battleship.model.game.GameMode.Epoch;
+import battleship.model.game.GameMode.Gamemode;
 import battleship.model.players.Grid;
 import battleship.model.players.Grid.Square;
 import battleship.model.ships.Ship;
@@ -22,7 +22,7 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 	}
 
 	@Override
-	public void sauvegarder(GameType gameType, GameStatut gameStatut, Grid humain, Grid ia) {
+	public void sauvegarder(Gamemode gameMode, GameStatut gameStatut, Grid humain, Grid ia, Epoch epoch) {
 		
 		//String filePath;
 		FileOutputStream out; // declare a file output object
@@ -36,7 +36,7 @@ public class TxtNormalGameDoa implements DoaNormalGame {
             // Connect print stream to the output stream
             p = new PrintStream( out );
             // write in the file
-            p.append (this.toStringPartie(gameType, gameStatut, humain, ia));
+            p.append (this.toStringPartie(gameMode, gameStatut, humain, ia, epoch));
             p.close();
         	
         } catch (Exception e) {
@@ -46,10 +46,12 @@ public class TxtNormalGameDoa implements DoaNormalGame {
         
 	}
 	
-	public String toStringPartie(GameType gameType, GameStatut gameStatut, Grid humain, Grid ia){
+	public String toStringPartie(Gamemode gameMode, GameStatut gameStatut, Grid humain, Grid ia, Epoch epoch){
 		
 		StringBuilder res = new StringBuilder();
-		res.append(gameType.toString());
+		res.append(gameMode.toString());
+		res.append(System.lineSeparator());
+		res.append(epoch.toString());
 		res.append(System.lineSeparator());
 		res.append(gameStatut.toString());
 		res.append(System.lineSeparator());
@@ -76,8 +78,8 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 		line = inFile.readLine();
 		
 		//CLASSIC game
-		if(line.equals(GameType.CLASSIC.toString()) ){
-			model.setGameType(GameType.CLASSIC);
+		if(line.equals(Gamemode.CLASSIC.toString()) ){
+			model.setGamemode(Gamemode.CLASSIC);
 		//Error
 		} else {
 			inFile.close();

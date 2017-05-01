@@ -9,6 +9,8 @@ public class ClassicGame extends GameMode {
 
 	public ClassicGame() {
 		super();
+		this.gameMode = Gamemode.CLASSIC;
+		this.setEpoch(Epoch.MODERN);
 	}
 	
 	public void placeShips() {
