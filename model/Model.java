@@ -53,8 +53,7 @@ public class Model extends Observable {
 	}
 	
 	public void shoot(int x, int y) {
-		Grid grid = getIAGrid();
-		grid.isHit(x,y);
+		game.playTurn(x, y);
 		setChanged();
 		notifyObservers();		
 	}

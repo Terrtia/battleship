@@ -1,7 +1,6 @@
 package battleship.model.game;
 
 import battleship.model.grid.Grid;
-import battleship.model.grid.Grid.Square;
 
 public class ClassicGame extends GameMode {
 
@@ -12,9 +11,14 @@ public class ClassicGame extends GameMode {
 	}
 	
 	public void placeShips() {
-		createFleet(getHumanGrid());
-		createFleet(getIAGrid());
-		//computer.placeShips();
+		createFleet(player);
+		createFleet(computer);
+		IA.placeShips(computer);
+	}
+	
+	public void playTurn(int x, int y){
+		computer.isHit(x, y);
+		IA.play(player);
 	}
 	
 	public void createFleet(Grid g){

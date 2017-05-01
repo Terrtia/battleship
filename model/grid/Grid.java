@@ -39,18 +39,18 @@ public class Grid extends Observable{
 		if(x<0 | y<0 | x>this.getGridSize() | y>this.getGridSize()){
 			throw new Exception("Out of Grid");
 		}
-		
+
 		if(ship.isPlaced())
 			ship.remove();
-		
+
 		for(Ship s : fleet)
 			if(s.isPlaced() && s.collide(x,y, ship.getSize(),horizontal)) return false;
-	
+
 		ship.place(x, y, horizontal);
 		notifyObservers();
 		return true;
 	}
-	
+
 	public boolean addShip(Ship ship){
 		return fleet.add(ship);
 	}
@@ -58,7 +58,7 @@ public class Grid extends Observable{
 	public void clear(){
 		fleet = new ArrayList<Ship>();
 	}
-	
+
 	public boolean isHit(int x, int y){
 		if(friendlyGrid[x][y] == Square.EMPTY){
 			for(Ship s : fleet){
@@ -82,55 +82,33 @@ public class Grid extends Observable{
 	}
 
 	public boolean boatStillFloats() {
-		for (Ship s : fleet){
-			if(s.isAlive())
-				return true;
-		}
+		for (Ship s : fleet)
+			if(s.isAlive()) return true;
 		return false;
 	}
 
-	public int getGridSize() {
-		return gridSize;
-	}
+	public int getGridSize() {return gridSize;}
+	public ArrayList<Ship> getFleet() {return fleet;}
+	public Square getSquare(int x,int y) {return friendlyGrid[x][y];}
+	public Square[][] getFriendlyGrid() {return friendlyGrid;}
 
-	public ArrayList<Ship> getFleet(){
-		return fleet;
-	}
-	
-	public Square getSquare(int x,int y){
-		return friendlyGrid[x][y];
-	}
-	
-	public Square[][] getFriendlyGrid() {
-		return friendlyGrid;
-	}
-
-	public void setFriendlyGrid(Square[][] friendlyGrid) {
-		this.friendlyGrid = friendlyGrid;
-	}
+	public void setFriendlyGrid(Square[][] friendlyGrid) {this.friendlyGrid = friendlyGrid;}
 
 	public String toStringFriendlyGrid() {
-		
 		StringBuilder res = new StringBuilder();
 		for(int i=0; i < gridSize;i++){		
 			for(int j = 0; j < gridSize;j++){
 				res.append(this.friendlyGrid[i][j] + ";");
 			}
 		}
-
 		return res.toString();
 	}
 
 	public String toStringFleet() {
-		
 		StringBuilder res = new StringBuilder();
 		for(Ship ship : this.fleet){
 			res.append(ship.toString());
 		}
-		
 		return res.toString();
 	}
-	
-	
-
 }
