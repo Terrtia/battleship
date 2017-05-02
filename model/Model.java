@@ -95,7 +95,7 @@ public class Model extends Observable {
 		return game;
 	}	
 	
-	public void sauvegarder() {
+	public void sauvegarder(String path) {
 		// choisir le format de stockage ici
 		this.doaFactory = AbstractDoaFactory.getFactory( AbstractDoaFactory.TXT_DOA );
 		Gamemode gameMode = this.game.getGameMode();
@@ -105,7 +105,7 @@ public class Model extends Observable {
 			DoaNormalGame doa= doaFactory.getNormalGameTxtDoa();
 			Epoch epoch = game.getEpoch();
 			this.game.getEpoch();
-			doa.sauvegarder(gameMode, this.gameStatut, this.getHumanGrid(), this.getIAGrid(), epoch);
+			doa.sauvegarder(gameMode, this.gameStatut, this.getHumanGrid(), this.getIAGrid(), epoch, path);
 			break;
 		default:
 			//erreur

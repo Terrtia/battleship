@@ -22,7 +22,7 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 	}
 
 	@Override
-	public void sauvegarder(Gamemode gameMode, GameStatut gameStatut, Grid humain, Grid ia, Epoch epoch) {
+	public void sauvegarder(Gamemode gameMode, GameStatut gameStatut, Grid humain, Grid ia, Epoch epoch, String path) {
 		
 		//String filePath;
 		FileOutputStream out; // declare a file output object
@@ -31,7 +31,7 @@ public class TxtNormalGameDoa implements DoaNormalGame {
         try {
         	// Create a new file output stream
             // connected to "myfile.txt"
-            out = new FileOutputStream("save.txt");
+            out = new FileOutputStream(path);
 
             // Connect print stream to the output stream
             p = new PrintStream( out );

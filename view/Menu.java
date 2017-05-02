@@ -39,18 +39,16 @@ public class Menu extends JMenuBar {
 		item1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					JFileChooser chooser = new JFileChooser(); 
-					PrintWriter sortie;
+					JFileChooser chooser = new JFileChooser();
 					File fichier;
 					
 					fichier = chooser.getSelectedFile();
 					if (chooser.showOpenDialog(null)== 
 						    JFileChooser.APPROVE_OPTION) {
 						    fichier = chooser.getSelectedFile();
-						    System.out.println(fichier.getPath());
 						    m.charger(fichier.getPath());
 						}
-					
+				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -61,7 +59,21 @@ public class Menu extends JMenuBar {
 		//sauvegarder
 		item2.addActionListener(new ActionListener(){
 	    	  public void actionPerformed(ActionEvent event){
-	    		m.sauvegarder();
+	    		
+	    		  JFileChooser chooser = new JFileChooser();
+	    		  int retrival = chooser.showSaveDialog(null);
+	    		    if (retrival == JFileChooser.APPROVE_OPTION) {
+	    		        try {
+	    		        	m.sauvegarder(chooser.getSelectedFile().getPath());
+	    		        } catch (Exception ex) {
+	    		            ex.printStackTrace();
+	    		        }
+	    		    }
+	    		  
+	    		 /* try(FileWriter fw = new FileWriter(chooser.getSelectedFile()+".txt")) {
+	    			  fw.write(sb.toString());
+	    		  }*/
+	    		
 	    	  }
 		});
 		//nouvel partie

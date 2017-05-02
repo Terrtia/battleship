@@ -9,7 +9,7 @@ import battleship.model.grid.Grid;
 
 public interface DoaNormalGame {
 
-	void sauvegarder(Gamemode gameMode, GameStatut gameStatut, Grid humain, Grid ia, Epoch epoch);
+	void sauvegarder(Gamemode gameMode, GameStatut gameStatut, Grid humain, Grid ia, Epoch epoch, String path);
 	void charger(Model model, String path) throws Exception;
    
 }
