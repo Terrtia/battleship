@@ -10,7 +10,7 @@ import battleship.model.ships.modern.MissileCruiser;
  * Classe représentant la grille
  *
  */
-public class Grid extends Observable{
+public class Grid {
 
 	/**
 	 * Les différents états d'une case de la grille
@@ -68,7 +68,6 @@ public class Grid extends Observable{
 			if(s.isPlaced() && s.collide(x,y, ship.getSize(),horizontal)) return false;
 
 		ship.place(x, y, horizontal);
-		notifyObservers();
 		return true;
 	}
 
@@ -78,7 +77,6 @@ public class Grid extends Observable{
 
 	public void clear(){
 		fleet = new ArrayList<Ship>();
-		notifyObservers();
 	}
 	/**
 	 * Fonction qui tire sur un bateau de la grille
@@ -95,13 +93,11 @@ public class Grid extends Observable{
 				if (s.isHit(x, y)){
 					friendlyGrid[x][y] = Square.HIT;
 					s.hit();
-					notifyObservers();
 					return true;
 				}
 			}
 			friendlyGrid[x][y] = Square.MISS;
 		}
-		notifyObservers();
 		return false;
 	}
 

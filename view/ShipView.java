@@ -65,7 +65,6 @@ public class ShipView extends JFrame implements Observer {
 		int index;
 		//dessin des bateaux
 		for(Ship ship : model.getHumanFleet()){
-			label= new JLabel();
 			if(ship.isHorizontal()){
 				index = ship.getTopLeftY()*model.getGridSize()+ship.getTopLeftX();
 			}else{
@@ -109,6 +108,42 @@ public class ShipView extends JFrame implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		JLabel label;
 		boolean horizontal;
+		int index;
+		for(int i = 0;i < model.getGridSize();i++){
+			for(int j = 0 ;j < model.getGridSize();j++){
+				 label = (JLabel) panelShip.getComponent(i*model.getGridSize()+j);
+				 label.setIcon(IconFactory.getInstance().getWater());
+			}
+		}
+		
+		for(Ship ship : model.getHumanFleet()){
+			if(ship.isHorizontal()){
+				index = ship.getTopLeftY()*model.getGridSize()+ship.getTopLeftX();
+			}else{
+				index = (ship.getTopLeftY())*model.getGridSize()+ship.getTopLeftX();
+			}
+			label = (JLabel) panelShip.getComponent(index);
+			label.setIcon(IconFactory.getInstance().getFrontBoat(ship.isHorizontal()));
+			for(int i=1; i < ship.getSize()-1;i++){
+				if(ship.isHorizontal()){
+					index = ship.getTopLeftY()*model.getGridSize()+ship.getTopLeftX()+i;
+				}else{
+					index = (ship.getTopLeftY()+i)*model.getGridSize()+ship.getTopLeftX();
+				}
+				label = (JLabel) panelShip.getComponent(index);
+				label.setIcon(IconFactory.getInstance().getBoat(ship.isHorizontal()));
+			}
+			
+			if(ship.isHorizontal()){
+				index = ship.getTopLeftY()*model.getGridSize()+ship.getTopLeftX()+ship.getSize()-1;
+			}else{
+				index = (ship.getTopLeftY()+ship.getSize()-1)*model.getGridSize()+ship.getTopLeftX();
+			}
+			label = (JLabel) panelShip.getComponent(index);
+			label.setIcon(IconFactory.getInstance().getRearBoat(ship.isHorizontal()));
+			
+		}
+		
 		//on explose les parties de bateaux détruites
 		for(int i = 0; i < model.getGridSize();i++){
 			for(int j = 0; j < model.getGridSize();j++){
@@ -133,7 +168,6 @@ public class ShipView extends JFrame implements Observer {
 				}
 			}
 		}
-		int index;
 		
 		//si un bateau est détruit on l'affiche comme entierement brulé
 		for(Ship ship : model.getHumanFleet()){

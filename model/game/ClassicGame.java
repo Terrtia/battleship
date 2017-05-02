@@ -29,7 +29,8 @@ public class ClassicGame extends GameMode {
 	
 	public void playTurn(int x, int y){
 		computer.isHit(x, y);
-		IA.play(player);
+		if(computer.boatStillFloats())
+			IA.play(player);
 	}
 
 	public void createFleet(Grid g){

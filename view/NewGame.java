@@ -96,7 +96,7 @@ public class NewGame extends JDialog{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			model.newGame(selectedGamemode, selectedEpoch);
-			new PlaceShips(model.getGameMode());
+			new PlaceShips(model);
 			dispose();
 		}
 	}

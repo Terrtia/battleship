@@ -50,6 +50,7 @@ public class Model extends Observable {
 		}
 		game.setEpoch(e);
 		game.placeShips();
+
 	}
 	
 	public void shoot(int x, int y) {
@@ -197,5 +198,24 @@ public class Model extends Observable {
 
 	public String toStringGameStatut() {
 		return gameStatut.toString();
+	}
+
+	public void placeShip(Ship s, int x, int y, boolean horizontal) {
+		getHumanGrid().placeShip(s, x, y, horizontal);
+		setChanged();
+		
+	}
+
+	public Ship getHumanShip(int selected) {
+		
+		return getHumanGrid().getFleet().get(selected);
+	}
+	
+	public boolean humanLost(){
+		return !getHumanGrid().boatStillFloats();
+	}
+	
+	public boolean iaLost(){
+		return !getIAGrid().boatStillFloats();
 	}
 }
