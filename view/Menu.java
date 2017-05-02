@@ -2,7 +2,11 @@ package battleship.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -35,7 +39,18 @@ public class Menu extends JMenuBar {
 		item1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					m.charger();
+					JFileChooser chooser = new JFileChooser(); 
+					PrintWriter sortie;
+					File fichier;
+					
+					fichier = chooser.getSelectedFile();
+					if (chooser.showOpenDialog(null)== 
+						    JFileChooser.APPROVE_OPTION) {
+						    fichier = chooser.getSelectedFile();
+						    System.out.println(fichier.getPath());
+						    m.charger(fichier.getPath());
+						}
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

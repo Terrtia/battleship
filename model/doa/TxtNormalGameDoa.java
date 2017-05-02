@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import battleship.model.Model;
 import battleship.model.Model.GameStatut;
-import battleship.model.game.GameMode;
 import battleship.model.game.GameMode.Epoch;
 import battleship.model.game.GameMode.Gamemode;
 import battleship.model.grid.Grid;
@@ -70,11 +69,10 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 	}
 
 	@Override
-	public void charger(Model model) throws Exception {
+	public void charger(Model model, String path) throws Exception {
 		String line;
 		String[] parts;
-		BufferedReader inFile = new BufferedReader(new FileReader("save.txt"));
-		GameMode game = model.getGameMode();
+		BufferedReader inFile = new BufferedReader(new FileReader(path));
 		
 		model.recreateShip();
 		
@@ -152,7 +150,6 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 		model.setHumanFriendlyGrid(humanFriendlyGrid);
 		
 		// Human Fleet
-		Ship ship;
 		int size;
 		int hitPoints;
 		int topLeftX;

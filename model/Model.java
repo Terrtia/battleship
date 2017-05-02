@@ -112,7 +112,7 @@ public class Model extends Observable {
 		}
 	}
 	
-	public void charger() throws Exception {
+	public void charger(String path) throws Exception {
 		//format du fichier
 		this.doaFactory = AbstractDoaFactory.getFactory( AbstractDoaFactory.TXT_DOA );
 		
@@ -121,7 +121,7 @@ public class Model extends Observable {
 		inFile.close();
 		if(mode.equals(Gamemode.CLASSIC.toString()) ){
 			DoaNormalGame doa= doaFactory.getNormalGameTxtDoa();
-			doa.charger(this);
+			doa.charger(this, path);
 		} else {
 			//GameType in save file is incorrect
 			//throw exception?
