@@ -88,6 +88,10 @@ public abstract class Ship {
 		this.hitPoints = hitPoints;
 	}
 
+	public void setSize(int size) {
+		this.size = size;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder res = new StringBuilder();

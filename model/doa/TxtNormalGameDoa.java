@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import battleship.model.Model;
 import battleship.model.Model.GameStatut;
+import battleship.model.game.GameMode;
 import battleship.model.game.GameMode.Epoch;
 import battleship.model.game.GameMode.Gamemode;
 import battleship.model.grid.Grid;
@@ -73,6 +74,9 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 		String line;
 		String[] parts;
 		BufferedReader inFile = new BufferedReader(new FileReader("save.txt"));
+		GameMode game = model.getGameMode();
+		
+		model.recreateShip();
 		
 		// read first line = GameType
 		line = inFile.readLine();
@@ -84,6 +88,16 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 		} else {
 			inFile.close();
 			throw new Exception("incorrect save file, GameType");
+		}
+		
+		line = inFile.readLine();
+		//EPOCH
+		if(line.equals(Epoch.MODERN.toString()) ){
+			model.setEpoch(Epoch.MODERN);
+		//Error
+		} else {
+			inFile.close();
+			throw new Exception("incorrect save file, Epoch");
 		}
 		
 		// GameStatut
@@ -130,8 +144,6 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 					humanFriendlyGrid[i][j] = Square.MISS;
 				} else {
 					inFile.close();
-					System.out.println(index);
-					System.out.println(parts[index]);
 					throw new Exception("not Square Object");
 				}
 				index++;
@@ -146,15 +158,45 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 		int topLeftX;
 		int topLeftY;
 		boolean horizontal = false;
-		ArrayList<Ship> fleetHuman = new ArrayList<Ship>();
-		while(!line.equals("-")) {
-			line = inFile.readLine();
-			//ligne a traiter
+		ArrayList<Ship> fleetHuman = model.getHumanFleet();
+			
+		for(int i=0; i<5 ; i++){
+			
+			
 			size = -1;
 			hitPoints = -1;
 			topLeftX = -1;
 			topLeftY = -1;
 			horizontal = false;
+			
+			line = inFile.readLine();
+			parts = line.split(";");
+			
+			//size
+			size = Integer.valueOf(parts[0]);
+			//hitPoints
+			hitPoints = Integer.valueOf(parts[1]);
+			//topLeftX
+			topLeftX = Integer.valueOf(parts[2]);
+			//topLeftY
+			topLeftY = Integer.valueOf(parts[3]);
+			//horizontal=false
+			horizontal = Boolean.valueOf(parts[4]);
+			
+			if(size == -1 | hitPoints == -1 | topLeftX == -1 | topLeftY == -1 ){
+				inFile.close();
+				throw new Exception("Error load file, ia ship values");
+			}
+			
+			fleetHuman.get(i).setSize(size);
+			model.getHumanGrid().placeShip(fleetHuman.get(i), topLeftX, topLeftY, horizontal);
+			fleetHuman.get(i).setHitPoints(hitPoints);
+		}
+		
+		line = inFile.readLine();
+		if(!line.equals("-")) {
+			inFile.close();
+			throw new Exception("incorrect save file");
 		}
 		
 		// IA friendlyGrid
@@ -183,16 +225,18 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 				
 		
 		// IA Fleet
-		ArrayList<Ship> fleetIa = new ArrayList<Ship>();
-		line = inFile.readLine();
-		while(!line.equals("-")) {
-			parts = line.split(";");
-
+		ArrayList<Ship> fleetIa = model.getIAFleet();
+		
+		for(int i=0; i<5 ; i++){	
+			
 			size = -1;
 			hitPoints = -1;
 			topLeftX = -1;
 			topLeftY = -1;
 			horizontal = false;
+			
+			line = inFile.readLine();
+			parts = line.split(";");
 			
 			//size
 			size = Integer.valueOf(parts[0]);
@@ -209,14 +253,20 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 				inFile.close();
 				throw new Exception("Error load file, ia ship values");
 			}
-			//ship = new Ship(size, hitPoints);
-			//fleetIa.add()
 			
-			line = inFile.readLine();
+			fleetIa.get(i).setSize(size);
+			model.getIAGrid().placeShip(fleetIa.get(i), topLeftX, topLeftY, horizontal);
+			fleetIa.get(i).setHitPoints(hitPoints);
 		}
 		
+		line = inFile.readLine();
+		if(!line.equals("-")) {
+			inFile.close();
+			throw new Exception("incorrect save file");
+		}
 		
 		inFile.close();
 	}
 
+	
 }

@@ -40,6 +40,10 @@ public abstract class GameMode {
 
 	public abstract void playTurn(int x, int y);
 	
+	public abstract void createFleet(Grid g);
+	
+	public abstract void recreateFleet();
+	
 	/**
 	 * Setter de l'epoque
 	 * @param e

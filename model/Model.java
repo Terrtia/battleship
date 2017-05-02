@@ -39,7 +39,7 @@ public class Model extends Observable {
 		
 		this.setGameStatut(GameStatut.HUMAIN_TOUR);
 		
-		this.sauvegarder();
+		//this.sauvegarder();
 	}
 	
 	public void newGame(Gamemode gm, Epoch e) {
@@ -156,7 +156,13 @@ public class Model extends Observable {
 	
 	public void setIaFriendlyGrid(Square[][] iaFriendlyGrid) {
 		this.game.setIAFriendlyGrid(iaFriendlyGrid);
+	} 
+	
+	public void recreateShip() {
+		this.game.recreateFleet();
 	}
+	
+	
 	
 	public Square getHumanSquare(int x,int y){
 
@@ -185,6 +191,9 @@ public class Model extends Observable {
 		this.gameStatut = gameStatut;
 	}
 	
+	public void setEpoch(Epoch epoch){
+		this.game.setEpoch(epoch);
+	}
 
 	public String toStringGameStatut() {
 		return gameStatut.toString();

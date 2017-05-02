@@ -40,4 +40,10 @@ public class ClassicGame extends GameMode {
 		g.addShip(shipFactory.createSubmarine());
 		g.addShip(shipFactory.createTorpedoBoat());
 	}
+
+	@Override
+	public void recreateFleet() {
+		this.createFleet(this.player);
+		this.createFleet(this.computer);
+	}
 }
