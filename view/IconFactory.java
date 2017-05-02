@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
  *
  */
 public class IconFactory {
-
+	static String path = "src/battleship/";
 	 private static IconFactory instance = new IconFactory();
 	 
 	 /**
@@ -20,25 +20,25 @@ public class IconFactory {
 		 return instance;
 	 }
 
-	 private Icon explosion = new ImageIcon("src/explosion.png");
-	 private Icon waterExplosion = new ImageIcon("src/waterExplosion.png");
-	 private Icon water = new ImageIcon("src/water.png");
+	 private Icon explosion = new ImageIcon(path+"explosion.png");
+	 private Icon waterExplosion = new ImageIcon(path+"waterExplosion.png");
+	 private Icon water = new ImageIcon(path+"water.png");
 		
-	 private Icon rearBoat = new ImageIcon("src/boat2.png");
-	 private Icon boat = new ImageIcon("src/boat1.png");
-	 private Icon frontBoat = new ImageIcon("src/boat3.png");
+	 private Icon rearBoat = new ImageIcon(path+"boat2.png");
+	 private Icon boat = new ImageIcon(path+"boat1.png");
+	 private Icon frontBoat = new ImageIcon(path+"boat3.png");
 		
-	 private Icon rearBoatH = new ImageIcon("src/boatH2.png");
-	 private Icon boatH = new ImageIcon("src/boatH1.png");
-	 private Icon frontBoatH = new ImageIcon("src/boatH3.png");
+	 private Icon rearBoatH = new ImageIcon(path+"boatH2.png");
+	 private Icon boatH = new ImageIcon(path+"boatH1.png");
+	 private Icon frontBoatH = new ImageIcon(path+"boatH3.png");
 		
-	 private Icon rearBoatExplosion = new ImageIcon("src/boatExplosion2.png");
-	 private Icon boatExplosion = new ImageIcon("src/boatExplosion1.png");
-	 private Icon frontBoatExplosion = new ImageIcon("src/boatExplosion3.png");
+	 private Icon rearBoatExplosion = new ImageIcon(path+"boatExplosion2.png");
+	 private Icon boatExplosion = new ImageIcon(path+"boatExplosion1.png");
+	 private Icon frontBoatExplosion = new ImageIcon(path+"boatExplosion3.png");
 		
-	 private Icon rearBoatHExplosion = new ImageIcon("src/boatExplosionH2.png");
-	 private Icon boatHExplosion = new ImageIcon("src/boatExplosionH1.png");
-	 private Icon frontBoatHExplosion = new ImageIcon("src/boatExplosionH3.png");
+	 private Icon rearBoatHExplosion = new ImageIcon(path+"boatExplosionH2.png");
+	 private Icon boatHExplosion = new ImageIcon(path+"boatExplosionH1.png");
+	 private Icon frontBoatHExplosion = new ImageIcon(path+"boatExplosionH3.png");
 	 
 	 /**
 	  * 
