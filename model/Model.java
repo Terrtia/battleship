@@ -14,8 +14,6 @@ import battleship.model.game.GameMode.Gamemode;
 import battleship.model.grid.Grid;
 import battleship.model.grid.Grid.Square;
 import battleship.model.ships.Ship;
-import battleship.view.AttackView;
-import battleship.view.ShipView;
 
 
 
@@ -39,7 +37,6 @@ public class Model extends Observable {
 		
 		this.setGameStatut(GameStatut.HUMAIN_TOUR);
 		
-		//this.sauvegarder();
 	}
 	
 	public void newGame(Gamemode gm, Epoch e) {
@@ -124,7 +121,6 @@ public class Model extends Observable {
 			doa.charger(this, path);
 		} else {
 			//GameType in save file is incorrect
-			//throw exception?
 		}
 			
 		this.notifyObservers();

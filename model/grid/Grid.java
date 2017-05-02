@@ -1,8 +1,6 @@
 package battleship.model.grid;
 
 import java.util.ArrayList;
-import java.util.Observable;
-
 import battleship.model.ships.Ship;
 import battleship.model.ships.modern.MissileCruiser;
 

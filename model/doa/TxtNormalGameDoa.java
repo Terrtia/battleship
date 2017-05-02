@@ -121,6 +121,8 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 		if(line.equals(Epoch.MODERN.toString()) ){
 			model.setEpoch(Epoch.MODERN);
 		//Error
+		} else if(line.equals(Epoch.PAST.toString()) ){
+			model.setEpoch(Epoch.PAST);
 		} else {
 			inFile.close();
 			throw new Exception("incorrect save file, Epoch");
@@ -205,10 +207,6 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 			//horizontal=false
 			horizontal = Boolean.valueOf(parts[4]);
 			
-			if(size == -1 | hitPoints == -1 | topLeftX == -1 | topLeftY == -1 ){
-				inFile.close();
-				throw new Exception("Error load file, ia ship values");
-			}
 			
 			fleetHuman.get(i).setSize(size);
 			model.getHumanGrid().placeShip(fleetHuman.get(i), topLeftX, topLeftY, horizontal);
@@ -271,10 +269,6 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 			//horizontal=false
 			horizontal = Boolean.valueOf(parts[4]);
 			
-			if(size == -1 | hitPoints == -1 | topLeftX == -1 | topLeftY == -1 ){
-				inFile.close();
-				throw new Exception("Error load file, ia ship values");
-			}
 			
 			fleetIa.get(i).setSize(size);
 			model.getIAGrid().placeShip(fleetIa.get(i), topLeftX, topLeftY, horizontal);

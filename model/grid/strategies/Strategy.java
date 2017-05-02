@@ -3,7 +3,6 @@ package battleship.model.grid.strategies;
 import java.util.Random;
 
 import battleship.model.grid.Grid;
-import battleship.model.grid.Grid.Square;
 import battleship.model.ships.Ship;
 
 public abstract class Strategy {
