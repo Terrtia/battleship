@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -156,6 +157,14 @@ public class AttackView extends JFrame implements Observer {
 		    //Redéfinition de la méthode actionPerformed()
 		    public void actionPerformed(ActionEvent arg0) {
 		    	model.shoot(x, y);
+		    	JOptionPane jp;
+		    	if(model.humanLost()){
+		    		jp = new JOptionPane();
+		    		jp.showMessageDialog(null, "YOU LOSE", "LOOOSER", JOptionPane.INFORMATION_MESSAGE);
+		    	}else if(model.iaLost()){
+		    		jp = new JOptionPane();
+		    		jp.showMessageDialog(null, "YOU WIN", "WINNER", JOptionPane.INFORMATION_MESSAGE);
+		    	}
 		    }
 	  }
 }

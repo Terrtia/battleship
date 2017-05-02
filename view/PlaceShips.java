@@ -34,6 +34,7 @@ public class PlaceShips extends JDialog implements Observer {
 	private GameMode gamemode;
 
 	private JPanel panel;
+	private Model model;
 	private ButtonGroup boatg;
 	private JComboBox horizontal;
 	private JRadioButton boat1,boat2,boat3,boat4,boat5;
@@ -43,9 +44,11 @@ public class PlaceShips extends JDialog implements Observer {
 	 * @param gm
 	 * Le mode de jeu
 	 */
-	public PlaceShips(GameMode gm){
+	public PlaceShips(Model m){
 		super();
-		gamemode = gm;
+		
+		model = m;
+		gamemode = model.getGameMode();
 		grid = gamemode.getHumanGrid();
 
 		JPanel content = new JPanel();
@@ -149,9 +152,9 @@ public class PlaceShips extends JDialog implements Observer {
 
 		public void actionPerformed(ActionEvent arg0) {
 			int selected = getSelectedBoat();
-			Ship s = grid.getFleet().get(selected);
+			Ship s = model.getHumanShip(selected);
 			try {
-				grid.placeShip(s, x, y, horizontal.getSelectedIndex() == 0);
+				model.placeShip(s, x, y, horizontal.getSelectedIndex() == 0);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -170,6 +173,7 @@ public class PlaceShips extends JDialog implements Observer {
 		public void actionPerformed(ActionEvent arg0) {
 			if(grid.allShipsPlaced()){
 				dispose();
+				model.notifyObservers();
 			}else{
 				System.out.println("nope");
 			}
