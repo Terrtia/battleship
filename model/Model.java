@@ -123,6 +123,7 @@ public class Model extends Observable {
 			//GameType in save file is incorrect
 		}
 			
+		this.setChanged();
 		this.notifyObservers();
 	}
 	
