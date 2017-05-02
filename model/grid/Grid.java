@@ -59,8 +59,8 @@ public class Grid {
 			ship.remove();
 
 		// Checks if the rear of the ship isn't outside the grid
-		if((horizontal && x+ship.getSize() >= getGridSize()) ||
-		   (!horizontal && y+ship.getSize() >= getGridSize()))
+		if((horizontal && x+ship.getSize() > getGridSize()) ||
+		   (!horizontal && y+ship.getSize() > getGridSize()))
 			return false;
 			
 			

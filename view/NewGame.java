@@ -95,6 +95,11 @@ public class NewGame extends JDialog{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			if(epoque.getSelectedIndex() == 0){
+				selectedEpoch = Epoch.MODERN;
+			}else if(epoque.getSelectedIndex() == 1){
+				selectedEpoch = Epoch.PAST;
+			}
 			model.newGame(selectedGamemode, selectedEpoch);
 			new PlaceShips(model);
 			dispose();

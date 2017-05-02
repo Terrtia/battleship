@@ -7,13 +7,14 @@ import battleship.model.grid.strategies.RandomShots;
 import battleship.model.grid.strategies.Strategy;
 import battleship.model.ships.ShipFactory;
 import battleship.model.ships.modern.ModernShipFactory;
+import battleship.model.ships.past.PastShipFactory;
 
 /**
  * Classe abstraite representant tout les modes de jeu
  *
  */
 public abstract class GameMode {
-	public enum Epoch {MODERN}
+	public enum Epoch {MODERN,PAST}
 	public enum Gamemode {CLASSIC}
 
 	protected Epoch playedEpoch; 
@@ -54,6 +55,9 @@ public abstract class GameMode {
 		switch(playedEpoch){
 		case MODERN:
 			shipFactory = new ModernShipFactory();
+			break;
+		case PAST:
+			shipFactory = new PastShipFactory();
 			break;
 		}
 	}

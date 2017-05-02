@@ -80,6 +80,9 @@ public class AttackView extends JFrame implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		//mise à jour des boutons
 		JButton button;
+		
+		
+		
 		for(int i = 0; i < model.getGridSize();i++){
 			for(int j = 0; j < model.getGridSize();j++){
 				button = (JButton) panel.getComponent(i*model.getGridSize()+j);
@@ -95,6 +98,8 @@ public class AttackView extends JFrame implements Observer {
 						button.setDisabledIcon(IconFactory.getInstance().getExplosion());
 						break;
 					case EMPTY :
+						button.setEnabled(true);
+						button.setIcon(IconFactory.getInstance().getWater());
 					break;
 				}
 			}
