@@ -14,13 +14,26 @@ import battleship.model.grid.Grid;
 import battleship.model.grid.Grid.Square;
 import battleship.model.ships.Ship;
 
-
+/**
+ * 
+ * a normal game DOA Txt
+ *
+ */
 public class TxtNormalGameDoa implements DoaNormalGame {
 
 	public TxtNormalGameDoa() {
 		
 	}
 
+	/**
+	 * save a normal game
+	 * @param gameMode Gamemode, game mode (CLASSIC, ...)
+	 * @param gameStatut GameStatut, game (HUMAIN_TOUR, ...)
+	 * @param humain Grid, Human Grid
+	 * @param ia Grid, IA Grid
+	 * @param epoch Epoch, game Epoch (MODERN, ...)
+	 * @param path String, file path
+	 */
 	@Override
 	public void sauvegarder(Gamemode gameMode, GameStatut gameStatut, Grid humain, Grid ia, Epoch epoch, String path) {
 		
@@ -46,6 +59,15 @@ public class TxtNormalGameDoa implements DoaNormalGame {
         
 	}
 	
+	/**
+	 * create the String to save
+	 * @param gameMode gameMode Gamemode, game mode (CLASSIC, ...)
+	 * @param gameStatut GameStatut, game (HUMAIN_TOUR, ...)
+	 * @param humain Grid, Human Grid
+	 * @param ia Grid, IA Grid
+	 * @param epoch Epoch, game Epoch (MODERN, ...)
+	 * @return
+	 */
 	public String toStringPartie(Gamemode gameMode, GameStatut gameStatut, Grid humain, Grid ia, Epoch epoch){
 		
 		StringBuilder res = new StringBuilder();
@@ -68,6 +90,12 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 		return res.toString();
 	}
 
+	/**
+	 * load a normal game
+	 * @param model Model
+	 * @param path String, file path
+	 * @throws Exception
+	 */
 	@Override
 	public void charger(Model model, String path) throws Exception {
 		String line;
@@ -128,9 +156,6 @@ public class TxtNormalGameDoa implements DoaNormalGame {
 		int gridSize = model.getGridSize();
 		Square humanFriendlyGrid[][] = new Square[gridSize][gridSize];
 		
-		/*for(String part: parts){
-			System.out.println(part);
-		}*/
 		
 		for(int i=0; i < gridSize;i++){
 			for(int j = 0; j < gridSize;j++){
