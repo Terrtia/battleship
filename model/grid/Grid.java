@@ -35,7 +35,11 @@ public class Grid {
 		fleet = new ArrayList<Ship>();
 		MissileCruiser gd = new MissileCruiser();
 		addShip(gd);
-		gd.place(1, 1, false);
+		try {
+			gd.place(1, 1, false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -49,9 +53,12 @@ public class Grid {
 	 * @param horizontal
 	 * boolean disant si le bateau est horizontal
 	 * @return
+	 * @throws Exception 
 	 */
-	public boolean placeShip(Ship ship, int x, int y, boolean horizontal){
-		assert (x<0 | y<0 | x>this.getGridSize() | y>this.getGridSize()) : "Out of Grid";
+	public boolean placeShip(Ship ship, int x, int y, boolean horizontal) throws Exception{
+		if(x<0 | y<0 | x>this.getGridSize() | y>this.getGridSize()){
+			throw new Exception("Out of Grid");
+		}
 
 		if(ship.isPlaced())
 			ship.remove();

@@ -197,7 +197,11 @@ public class Model extends Observable {
 	}
 
 	public void placeShip(Ship s, int x, int y, boolean horizontal) {
-		getHumanGrid().placeShip(s, x, y, horizontal);
+		try {
+			getHumanGrid().placeShip(s, x, y, horizontal);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		setChanged();
 		
 	}

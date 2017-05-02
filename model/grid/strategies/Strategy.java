@@ -14,7 +14,7 @@ public abstract class Strategy {
 	
 	public abstract void play(Grid g);
 	
-	public void placeShips(Grid g){
+	public void placeShips(Grid g) throws Exception{
 		int x = -1, y = -1, h = -1;
 		for(Ship s : g.getFleet()){
 			do{

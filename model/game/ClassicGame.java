@@ -24,7 +24,11 @@ public class ClassicGame extends GameMode {
 	public void placeShips() {
 		createFleet(player);
 		createFleet(computer);
-		IA.placeShips(computer);
+		try {
+			IA.placeShips(computer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void playTurn(int x, int y){
