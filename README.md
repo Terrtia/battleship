@@ -1,7 +1,10 @@
 # battleship
 
-cloner le projet dans le /src d'un nouveau projet de votre IDE: 
 git clone https://github.com/Terrtia/battleship.git
+
+Pour compiler & exécuter :
+"ant" suivi de "ant run"
+
 
 documentation sur lucichart, https://www.lucidchart.com/
 
