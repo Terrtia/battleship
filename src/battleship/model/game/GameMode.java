@@ -3,6 +3,7 @@ package battleship.model.game;
 import battleship.model.grid.Grid;
 import battleship.model.grid.Grid.Square;
 import battleship.model.grid.strategies.CrossShots;
+import battleship.model.grid.strategies.NewStrategy;
 import battleship.model.grid.strategies.RandomShots;
 import battleship.model.grid.strategies.Strategy;
 import battleship.model.ships.ShipFactory;
@@ -31,7 +32,7 @@ public abstract class GameMode {
 	public GameMode(){
 		player = new Grid();
 		computer = new Grid();
-		IA = new RandomShots();
+		IA = new NewStrategy();
 	}
 	
 	public abstract void placeShips();
